@@ -38,7 +38,7 @@ Your project will be evaluated against the following requirements:
 ## Wave 1: Database Models, Tables, & Seeds
 - Create an ERD for your database by reading through all of the requirements below
 - Generate Rails models and associations to match your ERD
-- Write a seed script that imports the provided JSON data from `db/seeds` into your database
+- Use the provided seed script `db/seeds.rb` to imports the provided JSON data into your database
 
 ### Seed Data
 `movies.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
