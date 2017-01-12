@@ -95,8 +95,7 @@ Because APIs are often open to the public, thorough testing is essential. For a 
 
 For each API endpoint, you should have _at least_:
 - A basic test with no parameters, if applicable
-- Positive and negative tests for each query parameter (`sort`, `n`, `p`)
-- Positive and negative tests for any URI parameters (user ID, movie name)
+- Positive and negative tests for any URI parameters (user ID, movie title)
 - Testing around any data in the request body
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
@@ -189,6 +188,8 @@ So, for an API endpoint like `GET /customers`, the following requests should be 
 - `GET /customers?sort=name`: All customers, sorted by name
 - `GET /customers?n=10&p=2`: Customers 10-19, sorted by ID
 - `GET /customers?sort=name&n=10&p=2`: Customers 10-19, sorted by name
+
+Of course, adding new features means you should be adding new controller tests to verify them.
 
 Things to note:
 - Sorting by ID is the rails default
