@@ -20,7 +20,7 @@ Your project will be evaluated against the following requirements:
 
 - API conformance
   - The provided test script should pass
-  - Bad data sent to the API should result in helpful errors
+  - Bad data sent to the API should result in an appropriate status code and helpful error
 - Test coverage
   - Models: All relations, validations, and custom model methods should include at least one positive and one negative test case
   - Controllers: Every API endpoint should include at least one positive and one negative test case
