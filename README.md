@@ -70,7 +70,7 @@ As with all Rails projects, model testing is a requirement. You should have _at 
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
-## Wave 2: Building the API
+## Waves 2 & 3: Building the API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
 Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a simple script that uses HTTParty to exercise all the endpoints. **This script is not a substitute for writing your own tests!!!!!** There are many edge and negative cases it doesn't cover - these are your responsibility.
@@ -103,7 +103,7 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 
 ## API Description
 
-### Wave 2.1: Listing Data
+### Wave 2: Listing Data
 
 #### `GET /customers`
 List all customers
@@ -137,7 +137,7 @@ Fields to return:
 - `available_inventory` (not currently checked-out to a customer)
   - This will be the same as `inventory` until you've completed wave 2.2
 
-### Wave 2.2: Rentals
+### Wave 3: Rentals
 
 #### `POST /rentals/:title/check-out`
 Check out one of the movie's inventory to the customer
