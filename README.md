@@ -32,11 +32,14 @@ Your project will be evaluated against the following requirements:
   - The _endpoints_ your API will need
   - The _HTTP verbs_ each endpoint will use
   - Any data that must be provided to the endpoint in order for it to do its work
+- Read the Seed Data description below and, bearing in mind the API Requirements, create an ERD for your database that specifies
+  - The _models_ your database will require
+  - The _attributes_ for each model
+  - Any _relationships_ between models
 - Create a new Rails app to serve as the API
 - Create a route that responds to `/zomg` that serves a json-encoded "it works!"
 
 ## Wave 1: Database Models, Tables, & Seeds
-- Create an ERD for your database by reading through all of the requirements below
 - Generate Rails models and associations to match your ERD
 - Use the provided seed script `db/seeds.rb` to imports the provided JSON data into your database
 
