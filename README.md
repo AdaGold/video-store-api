@@ -61,7 +61,6 @@ Your project will be evaluated against the following requirements:
 | `state`          | string   | &nbsp;
 | `postal_code`    | string   | &nbsp;
 | `phone`          | string   | Primary contact phone number
-| `account_credit` | float    | For reason we'd rather not get into, the store owes all of their customers a little bit of money; this amount is made available to customers as credit toward future rentals.
 
 ### Testing
 As with all Rails projects, model testing is a requirement. You should have _at least_ one positive and one negative test case for each relation, validation, and custom function you add to your models.
