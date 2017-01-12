@@ -138,7 +138,7 @@ Minimum fields to return:
 - `postal_code`
 - `phone`
 - `account_credit`
-- `movies_checked_out`
+- `movies_checked_out_count`
 
 #### `GET /customers/:id/current`
 List the movies a customer _currently_ has checked out
