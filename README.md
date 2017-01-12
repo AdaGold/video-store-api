@@ -103,7 +103,7 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 
 ## API Description
 
-### Wave 2.1: Customers
+### Wave 2.1: Listing Data
 
 #### `GET /customers`
 List all customers
@@ -114,28 +114,28 @@ Fields to return:
 - `postal_code`
 - `phone`
 - `movies_checked_out_count`
+  - This will be 0 until you've completed wave 2.2
 
-#### `GET /customers/:id/current`
-List the movies a customer _currently_ has checked out
-
-URI parameters:
-- `id`: Customer ID
+#### `GET /movies`
+List all movies
 
 Fields to return:
 - `title`
-- `checkout_date`
-- `due_date`
+- `release_date`
 
-#### `GET /customers/:id/history`
-List the movies a customer has checked out _in the past_
+#### `GET /movies/:title`
+Look a movie up by `title`
 
 URI parameters:
-- `id`: Customer ID
+- `title`: Movie title (e.g. `Jaws`)
 
 Fields to return:
 - `title`
-- `checkout_date`
-- `due_date`
+- `synopsis`
+- `release_date`
+- `inventory` (total)
+- `available_inventory` (not currently checked-out to a customer)
+  - This will be the same as `inventory` until you've completed wave 2.2
 
 ### Wave 2.2: Rentals
 
@@ -168,55 +168,7 @@ Fields to return:
 - `title`
 - `customer_id`
 - `name`
-- `phone`
-- `checkout_date`
-- `due_date`
-
-### Wave 2.3: Movies
-
-#### `GET /movies`
-List all movies
-
-Fields to return:
-- `title`
-- `release_date`
-
-#### `GET /movies/:title`
-Look a movie up by `title`
-
-URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
-
-Fields to return:
-- `title`
-- `synopsis`
-- `release_date`
-- `inventory` (total)
-- `available_inventory` (not currently checked-out to a customer)
-
-#### `GET /movies/:title/current`
-List customers that have _currently_ checked out a copy of the film
-
-URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
-
-Fields to return:
-- `customer_id`
-- `name`
-- `phone`
-- `checkout_date`
-- `due_date`
-
-#### `GET /movies/:title/history`
-List customers that have checked out a copy of the film _in the past_
-
-URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
-
-Fields to return:
-- `customer_id`
-- `name`
-- `phone`
+- `postal_code`
 - `checkout_date`
 - `due_date`
 
@@ -228,7 +180,7 @@ Any endpoint that returns a list should accept 3 _optional_ [query parameters](h
 
 | Name   | Value   | Description
 |--------|---------|------------
-| `sort` | string  | Sort objects by this field
+| `sort` | string  | Sort objects by this field, in ascending order
 | `n`    | integer | Number of responses to return per page
 | `p`    | integer | Page of responses to return
 
@@ -243,5 +195,57 @@ Things to note:
 - Possible sort fields:
   - Customers can be sorted by `name`, `registered_at` and `postal_code`
   - Movies can be sorted by `title` and `release_date`
+  - Overdue rentals can be sorted by `title`, `name`, `checkout_date` and `due_date`
 - If the client requests both sorting and pagination, pagination should be relative to the sorted order
 - Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
+
+### Optional Endpoints: Inventory Management
+All these endpoints should support all 3 query parameters. All fields are sortable.
+
+#### `GET /movies/:title/current`
+List customers that have _currently_ checked out a copy of the film
+
+URI parameters:
+- `title`: Movie title (e.g. `Jaws`)
+
+Fields to return:
+- `customer_id`
+- `name`
+- `postal_code`
+- `checkout_date`
+- `due_date`
+
+#### `GET /movies/:title/history`
+List customers that have checked out a copy of the film _in the past_
+
+URI parameters:
+- `title`: Movie title (e.g. `Jaws`)
+
+Fields to return:
+- `customer_id`
+- `name`
+- `postal_code`
+- `checkout_date`
+- `due_date`
+
+#### `GET /customers/:id/current`
+List the movies a customer _currently_ has checked out
+
+URI parameters:
+- `id`: Customer ID
+
+Fields to return:
+- `title`
+- `checkout_date`
+- `due_date`
+
+#### `GET /customers/:id/history`
+List the movies a customer has checked out _in the past_
+
+URI parameters:
+- `id`: Customer ID
+
+Fields to return:
+- `title`
+- `checkout_date`
+- `due_date`
