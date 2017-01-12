@@ -76,7 +76,7 @@ Because this API will be used as the backend for a future project, there are str
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
 
 ### Query Parameters
-Any endpoint that returns a list should accept 3 _optional_ query parameters:
+Any endpoint that returns a list should accept 3 _optional_ [query parameters](http://guides.rubyonrails.org/action_controller_overview.html#parameters):
 
 | Name   | Value   | Description
 |--------|---------|------------
