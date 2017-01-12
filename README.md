@@ -75,27 +75,6 @@ Because this API will be used as the backend for a future project, there are str
 
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
 
-### Query Parameters
-Any endpoint that returns a list should accept 3 _optional_ [query parameters](http://guides.rubyonrails.org/action_controller_overview.html#parameters):
-
-| Name   | Value   | Description
-|--------|---------|------------
-| `sort` | string  | Sort objects by this field
-| `n`    | integer | Number of responses to return per page
-| `p`    | integer | Page of responses to return
-
-So, for an API endpoint like `GET /customers`, the following requests should be valid:
-- `GET /customers`: All customers, sorted by ID
-- `GET /customers?sort=name`: All customers, sorted by name
-- `GET /customers?n=10&p=2`: Customers 10-19, sorted by ID
-- `GET /customers?sort=name&n=10&p=2`: Customers 10-19, sorted by name
-
-Things to note:
-- Sorting by ID is the rails default
-- Possible values for `sort` will be specified
-- If the client requests both sorting and pagination, pagination should be relative to the sorted order
-- Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
-
 ### Error Handling
 If something goes wrong, your API should return an appropriate [HTTP status code](http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/), as well as a list of errors. The list should be formatted like this:
 
@@ -273,3 +252,27 @@ Minimum fields to return:
 - `phone`
 - `checkout_date`
 - `due_date`
+
+## Optionals
+These really are optional - if you've gotten here and you have time left, that means you're moving speedy fast!
+
+### Query Parameters
+Any endpoint that returns a list should accept 3 _optional_ [query parameters](http://guides.rubyonrails.org/action_controller_overview.html#parameters):
+
+| Name   | Value   | Description
+|--------|---------|------------
+| `sort` | string  | Sort objects by this field
+| `n`    | integer | Number of responses to return per page
+| `p`    | integer | Page of responses to return
+
+So, for an API endpoint like `GET /customers`, the following requests should be valid:
+- `GET /customers`: All customers, sorted by ID
+- `GET /customers?sort=name`: All customers, sorted by name
+- `GET /customers?n=10&p=2`: Customers 10-19, sorted by ID
+- `GET /customers?sort=name&n=10&p=2`: Customers 10-19, sorted by name
+
+Things to note:
+- Sorting by ID is the rails default
+- Possible values for `sort` will be specified
+- If the client requests both sorting and pagination, pagination should be relative to the sorted order
+- Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
