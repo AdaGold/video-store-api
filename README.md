@@ -105,17 +105,11 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 #### `GET /customers`
 List all customers
 
-Possible sort values:
-- `name`
-- `registered_at`
-- `postal_code`
-
-Minimum fields to return:
+Fields to return:
 - `name`
 - `registered_at`
 - `postal_code`
 - `phone`
-- `account_credit`
 - `movies_checked_out_count`
 
 #### `GET /customers/:id/current`
@@ -124,11 +118,7 @@ List the movies a customer _currently_ has checked out
 URI parameters:
 - `id`: Customer ID
 
-Possible sort values:
-- `title`
-- `checkout_date`
-
-Minimum fields to return:
+Fields to return:
 - `title`
 - `checkout_date`
 - `due_date`
@@ -139,11 +129,7 @@ List the movies a customer has checked out _in the past_
 URI parameters:
 - `id`: Customer ID
 
-Possible sort values:
-- `title`
-- `checkout_date`
-
-Minimum fields to return:
+Fields to return:
 - `title`
 - `checkout_date`
 - `due_date`
@@ -175,12 +161,7 @@ Request body:
 #### `GET /rentals/overdue`
 List all customers with overdue movies
 
-Possible sort values:
-- `name`
-- `title`
-- `checkout_date`
-
-Minimum fields to return:
+Fields to return:
 - `title`
 - `customer_id`
 - `name`
@@ -193,11 +174,7 @@ Minimum fields to return:
 #### `GET /movies`
 List all movies
 
-Possible sort values:
-- `title`
-- `release_date`
-
-Minimum fields to return:
+Fields to return:
 - `title`
 - `release_date`
 
@@ -207,11 +184,7 @@ Look a movie up by `title`
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
 
-Possible sort values:
-- `title`
-- `release_date`
-
-Minimum fields to return:
+Fields to return:
 - `title`
 - `synopsis`
 - `release_date`
@@ -224,11 +197,7 @@ List customers that have _currently_ checked out a copy of the film
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
 
-Possible sort values:
-- `name`
-- `checkout_date`
-
-Minimum fields to return:
+Fields to return:
 - `customer_id`
 - `name`
 - `phone`
@@ -241,11 +210,7 @@ List customers that have checked out a copy of the film _in the past_
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
 
-Possible sort values:
-- `name`
-- `checkout_date`
-
-Minimum fields to return:
+Fields to return:
 - `customer_id`
 - `name`
 - `phone`
@@ -272,6 +237,8 @@ So, for an API endpoint like `GET /customers`, the following requests should be 
 
 Things to note:
 - Sorting by ID is the rails default
-- Possible values for `sort` will be specified
+- Possible sort fields:
+  - Customers can be sorted by `name`, `registered_at` and `postal_code`
+  - Movies can be sorted by `title` and `release_date`
 - If the client requests both sorting and pagination, pagination should be relative to the sorted order
 - Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
