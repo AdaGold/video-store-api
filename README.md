@@ -130,7 +130,7 @@ URI parameters:
 
 Fields to return:
 - `title`
-- `synopsis`
+- `overview`
 - `release_date`
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
