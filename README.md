@@ -149,16 +149,16 @@ Request body:
 | Field         | Datatype            | Description
 |---------------|---------------------|------------
 | `customer_id` | integer             | ID of the customer checking out this film
-| `due_date`    | string `YYYY-MM-DD` | When should this movie be returned?
+| `due_date`    | string `YYYY-MM-DD` | When should this movie be checked back in?
 
-#### `POST /rentals/:title/return`
+#### `POST /rentals/:title/check-in`
 Check in one of a customer's rentals
 
 Request body:
 
 | Field         | Datatype | Description
 |---------------|----------|------------
-| `customer_id` | integer  | ID of the customer returning this film
+| `customer_id` | integer  | ID of the customer checking in this film
 
 #### `GET /rentals/overdue`
 List all customers with overdue movies
