@@ -83,7 +83,7 @@ If something goes wrong, your API should return an appropriate [HTTP status code
 ```json
 {
   "errors": {
-    "sort": "Invalid sort field 'gnome'"
+    "sort": ["Invalid sort field 'gnome'"]
   }
 }
 ```
@@ -108,12 +108,13 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 List all customers
 
 Fields to return:
+- `id`
 - `name`
 - `registered_at`
 - `postal_code`
 - `phone`
 - `movies_checked_out_count`
-  - This will be 0 until you've completed wave 2.2
+  - This will be 0 until you've completed wave 3
 
 #### `GET /movies`
 List all movies
@@ -134,12 +135,14 @@ Fields to return:
 - `release_date`
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` until you've completed wave 2.2
+  - This will be the same as `inventory` until you've completed wave 3
 
 ### Wave 3: Rentals
 
 #### `POST /rentals/:title/check-out`
-Check out one of the movie's inventory to the customer
+Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
+
+**Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right?
 
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
