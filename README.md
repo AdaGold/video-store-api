@@ -19,7 +19,7 @@ This is a [stage 2](#) project.
 Your project will be evaluated against the following requirements:
 
 - API conformance
-  - The provided test script should pass
+  - The provided smoke tests should pass
   - Bad data sent to the API should result in an appropriate status code and helpful error
 - Test coverage
   - Models: All relations, validations, and custom model methods should include at least one positive and one negative test case
@@ -73,8 +73,6 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 ## Waves 2 & 3: Building the API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
-Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a simple script that uses HTTParty to exercise all the endpoints. **This script is not a substitute for writing your own tests!!!!!** There are many edge and negative cases it doesn't cover - these are your responsibility.
-
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
 
 ### Error Handling
@@ -99,6 +97,19 @@ For each API endpoint, you should have _at least_:
 - Testing around any data in the request body
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
+
+#### Smoke Tests
+Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a set of [smoke tests](http://softwaretestingfundamentals.com/smoke-testing/) written in Postman to exercise all the endpoints. **These are not a substitute for writing your own tests!!!!!** There are many edge and negative cases they don't cover - these are your responsibility.
+
+The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collection.json`](test/VideoStoreAPI_smoke_tests.postman_collection.json). To run them:
+
+1. Open Postman
+1. Click `Import` in the top left
+1. Drag-and-drop the file into the box
+1. In the left sidebar, click on the `Collections` tab
+1. There should be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.
+1. Click the blue `Run` button. This will launch the collection runner.
+1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
 
 ## API Description
 
