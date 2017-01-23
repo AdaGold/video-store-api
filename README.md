@@ -19,7 +19,7 @@ This is a [stage 2](#) project.
 Your project will be evaluated against the following requirements:
 
 - API conformance
-  - The provided test script should pass
+  - The provided smoke tests should pass
   - Bad data sent to the API should result in an appropriate status code and helpful error
 - Test coverage
   - Models: All relations, validations, and custom model methods should include at least one positive and one negative test case
@@ -73,8 +73,6 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 ## Waves 2 & 3: Building the API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
-Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a simple script that uses HTTParty to exercise all the endpoints. **This script is not a substitute for writing your own tests!!!!!** There are many edge and negative cases it doesn't cover - these are your responsibility.
-
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
 
 ### Error Handling
@@ -83,7 +81,7 @@ If something goes wrong, your API should return an appropriate [HTTP status code
 ```json
 {
   "errors": {
-    "sort": "Invalid sort field 'gnome'"
+    "title": ["Movie 'Revenge of the Gnomes' not found"]
   }
 }
 ```
@@ -100,6 +98,27 @@ For each API endpoint, you should have _at least_:
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
+#### Smoke Tests
+Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a set of [smoke tests](http://softwaretestingfundamentals.com/smoke-testing/) written in Postman to exercise all the endpoints.
+
+The smoke tests will verify that your API looks correct to the outside world, by sending actual HTTP requests to your running server and checking the results. They test things like:
+
+- Did I get a success response for a valid request?
+- Did the API return JSON?
+- Does the JSON contain the expected property names?
+
+**The smoke tests are not a substitute for writing your own tests!!!!!** They do **not** check that the content is _correct_, nor do they cover any negative or edge cases. Verifying correctness in these cases is **your** responsibility.
+
+The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collection.json`](test/VideoStoreAPI_smoke_tests.postman_collection.json). To run them:
+
+1. Open Postman
+1. Click `Import` in the top left
+1. Drag-and-drop the file into the box
+1. In the left sidebar, click on the `Collections` tab
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.
+1. Click the blue `Run` button. This will launch the collection runner.
+1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
+
 ## API Description
 
 ### Wave 2: Listing Data
@@ -108,12 +127,13 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 List all customers
 
 Fields to return:
+- `id`
 - `name`
 - `registered_at`
 - `postal_code`
 - `phone`
 - `movies_checked_out_count`
-  - This will be 0 until you've completed wave 2.2
+  - This will be 0 until you've completed wave 3
 
 #### `GET /movies`
 List all movies
@@ -134,12 +154,14 @@ Fields to return:
 - `release_date`
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` until you've completed wave 2.2
+  - This will be the same as `inventory` until you've completed wave 3
 
 ### Wave 3: Rentals
 
 #### `POST /rentals/:title/check-out`
-Check out one of the movie's inventory to the customer
+Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
+
+**Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right?
 
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
