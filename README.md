@@ -99,7 +99,15 @@ For each API endpoint, you should have _at least_:
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
 #### Smoke Tests
-Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a set of [smoke tests](http://softwaretestingfundamentals.com/smoke-testing/) written in Postman to exercise all the endpoints. **These are not a substitute for writing your own tests!!!!!** There are many edge and negative cases they don't cover - these are your responsibility.
+Because this API will be used as the backend for a future project, there are strict requirements about how it should be structured. To this end, we have provided a set of [smoke tests](http://softwaretestingfundamentals.com/smoke-testing/) written in Postman to exercise all the endpoints.
+
+The smoke tests will verify that your API looks correct to the outside world, by sending actual HTTP requests to your running server and checking the results. They test things like:
+
+- Did I get a success response for a valid request?
+- Did the API return JSON?
+- Does the JSON contain the expected property names?
+
+**The smoke tests are not a substitute for writing your own tests!!!!!** They do **not** check that the content is _correct_, nor do they cover any negative or edge cases. Verifying correctness in these cases is **your** responsibility.
 
 The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collection.json`](test/VideoStoreAPI_smoke_tests.postman_collection.json). To run them:
 
@@ -107,7 +115,7 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 1. Click `Import` in the top left
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
-1. There should be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.
 1. Click the blue `Run` button. This will launch the collection runner.
 1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
 
