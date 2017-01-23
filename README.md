@@ -81,7 +81,7 @@ If something goes wrong, your API should return an appropriate [HTTP status code
 ```json
 {
   "errors": {
-    "sort": ["Invalid sort field 'gnome'"]
+    "title": ["Movie 'Revenge of the Gnomes' not found"]
   }
 }
 ```
