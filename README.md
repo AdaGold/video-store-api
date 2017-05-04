@@ -13,13 +13,13 @@ Upon completing this project, students should be able to:
 - Respond reasonably to bad user data in the context of an API
 - Verify the correctness of an API using controller tests
 
-This is a [stage 2](#) project.
+This is a [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project.
 
 ## Success Criteria
 Your project will be evaluated against the following requirements:
 
 - API conformance
-  - The provided smoke tests should pass
+  - The provided smoke tests should pass (see the subfolder)
   - Bad data sent to the API should result in an appropriate status code and helpful error
 - Test coverage
   - Models: All relations, validations, and custom model methods should include at least one positive and one negative test case
@@ -37,11 +37,12 @@ Your project will be evaluated against the following requirements:
   - The _attributes_ for each model
   - Any _relationships_ between models
 - Create a new Rails app to serve as the API
+  - **Create the rails app with:** `$ rails new . --api`
 - Create a route that responds to `/zomg` that serves a json-encoded "it works!"
 
 ## Wave 1: Database Models, Tables, & Seeds
 - Generate Rails models and associations to match your ERD
-- Use the provided seed script `db/seeds.rb` to imports the provided JSON data into your database
+- Use the provided seed script `db/seeds.rb` to import the provided JSON data into your database
 
 ### Seed Data
 `movies.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
@@ -70,7 +71,7 @@ As with all Rails projects, model testing is a requirement. You should have _at 
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
-## Waves 2 & 3: Building the API
+## Waves 2 Starting The API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
@@ -121,8 +122,6 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 
 ## API Description
 
-### Wave 2: Listing Data
-
 #### `GET /customers`
 List all customers
 
@@ -133,7 +132,7 @@ Fields to return:
 - `postal_code`
 - `phone`
 - `movies_checked_out_count`
-  - This will be 0 until you've completed wave 3
+  - This will be 0 until you've completed optional requirements
 
 #### `GET /movies`
 List all movies
@@ -154,14 +153,16 @@ Fields to return:
 - `release_date`
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` until you've completed wave 3
+  - This will be the same as `inventory` unless you've completed the optional endpoints.
 
-### Wave 3: Rentals
+### Optional Rentals
+
+Wave 2 focused on **reading** data from the API.  In these endpoints you will interact with the API changing models through POST requests.  
 
 #### `POST /rentals/:title/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
 
-**Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right?
+**Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
 
 URI parameters:
 - `title`: Movie title (e.g. `Jaws`)
@@ -193,8 +194,8 @@ Fields to return:
 - `checkout_date`
 - `due_date`
 
-## Optionals
-These really are optional - if you've gotten here and you have time left, that means you're moving speedy fast!
+## Going Further
+These really are **optional** - if you've gotten here and you have time left, that means you're moving speedy fast!
 
 ### Query Parameters
 Any endpoint that returns a list should accept 3 _optional_ [query parameters](http://guides.rubyonrails.org/action_controller_overview.html#parameters):
