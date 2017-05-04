@@ -132,7 +132,7 @@ Fields to return:
 - `postal_code`
 - `phone`
 - `movies_checked_out_count`
-  - This will be 0 until you've completed optional requirements
+  - This will be 0 unless you've completed optional requirements
 
 #### `GET /movies`
 List all movies
