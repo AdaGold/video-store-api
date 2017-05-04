@@ -223,7 +223,7 @@ Things to note:
 - If the client requests both sorting and pagination, pagination should be relative to the sorted order
 - Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
 
-### Optional Endpoints: Inventory Management
+### More Endpoints: Inventory Management
 All these endpoints should support all 3 query parameters. All fields are sortable.
 
 #### `GET /movies/:title/current`
