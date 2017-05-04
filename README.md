@@ -71,7 +71,7 @@ As with all Rails projects, model testing is a requirement. You should have _at 
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
-## Waves 2 Starting The API
+## Waves 2 Coding The API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
