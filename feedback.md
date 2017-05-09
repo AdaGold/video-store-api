@@ -6,8 +6,6 @@
 | **Core Requirements** |   |
 | Git hygiene |  |
 | Comprehension questions	|  |
-| Link to Trello |  |
-| Link to ERD |  |
 | **General** |  |
 | Business Logic in Models |  |
 | All 3 required endpoints return expected JSON data |  |
