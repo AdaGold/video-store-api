@@ -117,7 +117,7 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
 1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.  
-1.  To do so go to the Gearbox and select `Manage Environments`  
+1.  To do so go to the Gearbox in the top-right and select `Manage Environments`  
 ![Manage Environments](images/manage-environment.png)
 1.  Then Select `Add` 
 ![add button](images/add-btn.png)
