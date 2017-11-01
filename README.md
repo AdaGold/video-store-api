@@ -177,22 +177,20 @@ Request body:
 
 Wave 2 focused on **reading** data from the API.  In these endpoints you will interact with the API changing models through POST requests.  
 
-#### `POST /rentals/:title/check-out`
+#### `POST /rentals/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
 
 **Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
-
-URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
 
 Request body:
 
 | Field         | Datatype            | Description
 |---------------|---------------------|------------
 | `customer_id` | integer             | ID of the customer checking out this film
+| `movie_id` | integer | ID of the movie to be checked out
 | `due_date`    | string `YYYY-MM-DD` | When should this movie be checked back in?
 
-#### `POST /rentals/:title/check-in`
+#### `POST /rentals/check-in`
 Check in one of a customer's rentals
 
 Request body:
@@ -200,6 +198,7 @@ Request body:
 | Field         | Datatype | Description
 |---------------|----------|------------
 | `customer_id` | integer  | ID of the customer checking in this film
+| `movie_id` | integer | ID of the movie to be checked out
 
 #### `GET /rentals/overdue`
 List all customers with overdue movies
