@@ -119,9 +119,9 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.  
 1.  To do so go to the Gearbox in the top-right and select `Manage Environments`  
 ![Manage Environments](images/manage-environment.png)
-1.  Then Select `Add` 
+1.  Then Select `Add`
 ![add button](images/add-btn.png)
-1.  Lastly add a key `url` and value `http://localhost:3000` 
+1.  Lastly add a key `url` and value `http://localhost:3000`
 ![Key & Value](images/key-value.png)
 1. Click the blue `Run` button. This will launch the collection runner.
 1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
@@ -160,6 +160,18 @@ Fields to return:
 - `inventory` (total)
 - `available_inventory` (not currently checked-out to a customer)
   - This will be the same as `inventory` unless you've completed the optional endpoints.
+
+#### `POST /movies`
+Create a new movie in the video store inventory.
+
+Request body:
+
+| Field         | Datatype            | Description
+|---------------|---------------------|------------
+| `title` | string             | Title of the movie
+| `overview` | string | Descriptive summary of the movie
+| `release_date` | string `YYYY-MM-DD` | Date the movie was released
+| `inventory` | integer | Quantity available in the video store
 
 ### Optional Rentals
 
@@ -279,8 +291,7 @@ Fields to return:
 - `title`
 - `checkout_date`
 - `due_date`
- 
+
 
 # Reference
 - [Postman on Environments](https://www.getpostman.com/docs/environments)  
-	
