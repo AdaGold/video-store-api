@@ -147,11 +147,11 @@ Fields to return:
 - `title`
 - `release_date`
 
-#### `GET /movies/:title`
-Look a movie up by `title`
+#### `GET /movies/:id`
+Look a movie up by `id`
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `title`
@@ -243,11 +243,11 @@ Things to note:
 ### More Endpoints: Inventory Management
 All these endpoints should support all 3 query parameters. All fields are sortable.
 
-#### `GET /movies/:title/current`
+#### `GET /movies/:id/current`
 List customers that have _currently_ checked out a copy of the film
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `customer_id`
@@ -256,11 +256,11 @@ Fields to return:
 - `checkout_date`
 - `due_date`
 
-#### `GET /movies/:title/history`
+#### `GET /movies/:id/history`
 List customers that have checked out a copy of the film _in the past_
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `customer_id`
