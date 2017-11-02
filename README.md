@@ -175,7 +175,7 @@ Request body:
 
 ### Optional Rentals
 
-Wave 2 focused on **reading** data from the API.  In these endpoints you will interact with the API changing models through POST requests.  
+Wave 2 focused on working with customers and movies. With these endpoints you can extend the functionality of your API to allow managing the rental process.
 
 #### `POST /rentals/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
@@ -198,7 +198,7 @@ Request body:
 | Field         | Datatype | Description
 |---------------|----------|------------
 | `customer_id` | integer  | ID of the customer checking in this film
-| `movie_id` | integer | ID of the movie to be checked out
+| `movie_id` | integer | ID of the movie to be checked in
 
 #### `GET /rentals/overdue`
 List all customers with overdue movies
