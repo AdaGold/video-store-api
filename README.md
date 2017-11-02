@@ -119,9 +119,9 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.  
 1.  To do so go to the Gearbox in the top-right and select `Manage Environments`  
 ![Manage Environments](images/manage-environment.png)
-1.  Then Select `Add` 
+1.  Then Select `Add`
 ![add button](images/add-btn.png)
-1.  Lastly add a key `url` and value `http://localhost:3000` 
+1.  Lastly add a key `url` and value `http://localhost:3000`
 ![Key & Value](images/key-value.png)
 1. Click the blue `Run` button. This will launch the collection runner.
 1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
@@ -147,11 +147,11 @@ Fields to return:
 - `title`
 - `release_date`
 
-#### `GET /movies/:title`
-Look a movie up by `title`
+#### `GET /movies/:id`
+Look a movie up by `id`
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `title`
@@ -161,26 +161,38 @@ Fields to return:
 - `available_inventory` (not currently checked-out to a customer)
   - This will be the same as `inventory` unless you've completed the optional endpoints.
 
+#### `POST /movies`
+Create a new movie in the video store inventory.
+
+Upon success, this request should return the `id` of the movie created. 
+
+Request body:
+
+| Field         | Datatype            | Description
+|---------------|---------------------|------------
+| `title` | string             | Title of the movie
+| `overview` | string | Descriptive summary of the movie
+| `release_date` | string `YYYY-MM-DD` | Date the movie was released
+| `inventory` | integer | Quantity available in the video store
+
 ### Optional Rentals
 
-Wave 2 focused on **reading** data from the API.  In these endpoints you will interact with the API changing models through POST requests.  
+Wave 2 focused on working with customers and movies. With these endpoints you can extend the functionality of your API to allow managing the rental process.
 
-#### `POST /rentals/:title/check-out`
+#### `POST /rentals/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today.
 
 **Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
-
-URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
 
 Request body:
 
 | Field         | Datatype            | Description
 |---------------|---------------------|------------
 | `customer_id` | integer             | ID of the customer checking out this film
+| `movie_id` | integer | ID of the movie to be checked out
 | `due_date`    | string `YYYY-MM-DD` | When should this movie be checked back in?
 
-#### `POST /rentals/:title/check-in`
+#### `POST /rentals/check-in`
 Check in one of a customer's rentals
 
 Request body:
@@ -188,6 +200,7 @@ Request body:
 | Field         | Datatype | Description
 |---------------|----------|------------
 | `customer_id` | integer  | ID of the customer checking in this film
+| `movie_id` | integer | ID of the movie to be checked in
 
 #### `GET /rentals/overdue`
 List all customers with overdue movies
@@ -232,11 +245,11 @@ Things to note:
 ### More Endpoints: Inventory Management
 All these endpoints should support all 3 query parameters. All fields are sortable.
 
-#### `GET /movies/:title/current`
+#### `GET /movies/:id/current`
 List customers that have _currently_ checked out a copy of the film
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `customer_id`
@@ -245,11 +258,11 @@ Fields to return:
 - `checkout_date`
 - `due_date`
 
-#### `GET /movies/:title/history`
+#### `GET /movies/:id/history`
 List customers that have checked out a copy of the film _in the past_
 
 URI parameters:
-- `title`: Movie title (e.g. `Jaws`)
+- `id`: Movie identifier
 
 Fields to return:
 - `customer_id`
@@ -279,8 +292,7 @@ Fields to return:
 - `title`
 - `checkout_date`
 - `due_date`
- 
+
 
 # Reference
 - [Postman on Environments](https://www.getpostman.com/docs/environments)  
-	
