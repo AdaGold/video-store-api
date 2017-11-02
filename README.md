@@ -164,6 +164,8 @@ Fields to return:
 #### `POST /movies`
 Create a new movie in the video store inventory.
 
+Upon success, this request should return the `id` of the movie created. 
+
 Request body:
 
 | Field         | Datatype            | Description
