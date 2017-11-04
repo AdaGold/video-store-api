@@ -44,6 +44,8 @@ Your project will be evaluated against the following requirements:
 - Generate Rails models and associations to match your ERD
 - Use the provided seed script `db/seeds.rb` to import the provided JSON data into your database
 
+In the past, many students have spent lots of time writing and testing validations for these models. Because project time is limited and validations are not an important learning objective this week, we do not recommend this. Instead, validate only those fields that, if they are absent, will break your API.
+
 ### Seed Data
 `movies.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
 
