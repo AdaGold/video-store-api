@@ -27,7 +27,7 @@ describe MoviesController do
     end
 
     it "returns movies with the required fields" do
-      keys = %w(id inventory overview release_date  title)
+      keys = %w(id release_date  title)
       get movies_path
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -50,6 +50,13 @@ describe MoviesController do
     it "can get a movie" do
       get movie_path(movies(:two).id)
       must_respond_with :success
+    end
+
+    it "shows required fields in the movie show page" do
+      keys = %w(inventory overview release_date title)
+      get movie_path(movies(:one).id)
+      body = JSON.parse(response.body)
+      body.keys.sort.must_equal keys
     end
 
     it "returns an error for invalid movie" do
