@@ -27,7 +27,7 @@ describe MoviesController do
     end
 
     it "returns movies with the required fields" do
-      keys = %w(title inventory id)
+      keys = %w(id inventory overview release_date  title)
       get movies_path
       body = JSON.parse(response.body)
       body.each do |movie|
@@ -35,14 +35,18 @@ describe MoviesController do
       end
     end
 
-    # it "returns an empty array if there are no movies" do
-    #   Movie.destroy_all
-    #   get movies_path
-    #   must_respond_with :success
-    #
-    #   body = JSON.parse(response.body)
-    #   body.must_be_kind_of Array
-    #   body.must_equal []
-    # end
+    it "returns an empty array if there are no movies" do
+      Movie.destroy_all
+      get movies_path
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.must_equal []
+    end
+  end
+
+  describe "show" do
+    
   end
 end
