@@ -48,13 +48,13 @@ describe MoviesController do
 
   describe "show" do
     it "can get a movie" do
-      get movie_path(movie(:two).id)
+      get movie_path(movies(:two).id)
       must_respond_with :success
     end
 
     it "returns an error for invalid movie" do
       movies(:one).destroy()
-      get movie_path(pets(:one).id)
+      get movie_path(movies(:one).id)
       must_respond_with :not_found
     end
   end
