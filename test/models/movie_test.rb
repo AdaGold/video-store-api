@@ -33,6 +33,10 @@ class MovieTest < ActiveSupport::TestCase
       movie.wont_be :valid?
     end
 
+    it "will not succeed unless the inventory is a number" do
+      movie.must_be :valid?
+      movie.inventory = "two"
+      movie.wont_be :valid?
+    end
   end
-
 end
