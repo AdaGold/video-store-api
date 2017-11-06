@@ -44,6 +44,8 @@ Your project will be evaluated against the following requirements:
 - Generate Rails models and associations to match your ERD
 - Use the provided seed script `db/seeds.rb` to import the provided JSON data into your database
 
+In the past, many students have spent lots of time writing and testing validations for these models. Because project time is limited and validations are not an important learning objective this week, we do not recommend this. Instead, validate only those fields that, if they are absent, will break your API.
+
 ### Seed Data
 `movies.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
 
@@ -116,8 +118,8 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 1. Click `Import` in the top left
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
-1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.  
-1.  To do so go to the Gearbox in the top-right and select `Manage Environments`  
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.
+1.  To do so go to the Gearbox in the top-right and select `Manage Environments`
 ![Manage Environments](images/manage-environment.png)
 1.  Then Select `Add`
 ![add button](images/add-btn.png)
@@ -144,6 +146,7 @@ Fields to return:
 List all movies
 
 Fields to return:
+- `id`
 - `title`
 - `release_date`
 
@@ -164,7 +167,7 @@ Fields to return:
 #### `POST /movies`
 Create a new movie in the video store inventory.
 
-Upon success, this request should return the `id` of the movie created. 
+Upon success, this request should return the `id` of the movie created.
 
 Request body:
 
@@ -295,4 +298,4 @@ Fields to return:
 
 
 # Reference
-- [Postman on Environments](https://www.getpostman.com/docs/environments)  
+- [Postman on Environments](https://www.getpostman.com/docs/environments)

@@ -1,10 +1,9 @@
 {
-	"variables": [],
 	"info": {
 		"name": "VideoStoreAPI With Optionals",
-		"_postman_id": "c66462db-2cf2-5f2a-1e4f-76f86b1d81ac",
+		"_postman_id": "f2b06e79-722a-2ee9-ab25-60682ec158dd",
 		"description": "",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -59,10 +58,21 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/customers",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -88,7 +98,7 @@
 							"tests[\"Many movies were sent\"] = jsonData.length > 0;",
 							"",
 							"// Save info on the first movie",
-							"postman.setEnvironmentVariable(\"movie_title\", jsonData[0].title);",
+							"postman.setEnvironmentVariable(\"movie_id\", jsonData[0].id);",
 							"",
 							"// Check required fields",
 							"var hasTitle = true;",
@@ -106,10 +116,18 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/movies",
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/movies",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"movies"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -147,10 +165,19 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/movies/{{movie_title}}",
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"movies",
+						"{{movie_id}}"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -184,18 +211,26 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/rentals/{{movie_title}}/check-out",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"customer_id\": {{customer_id}},\n\t\"due_date\": \"{{future_due_date}}\"\n}"
+					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}},\n\t\"due_date\": \"{{future_due_date}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/rentals/check-out",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rentals",
+						"check-out"
+					]
 				},
 				"description": ""
 			},
@@ -234,10 +269,21 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/customers",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -268,10 +314,19 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/movies/{{movie_title}}",
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"movies",
+						"{{movie_id}}"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -305,18 +360,26 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/rentals/{{movie_title}}/check-in",
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
-						"value": "application/json",
-						"description": ""
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"customer_id\": {{customer_id}}\n}"
+					"raw": "{\n\t\"customer_id\": {{customer_id}},\n\t\"movie_id\": {{movie_id}}\n}"
+				},
+				"url": {
+					"raw": "{{url}}/rentals/check-in",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rentals",
+						"check-in"
+					]
 				},
 				"description": ""
 			},
@@ -346,19 +409,27 @@
 							"",
 							"tests[\"Sent back expected customer\"] = customerList.length == 1;",
 							"",
-							"// Check that the mcoc has increased",
+							"// Check that the mcoc has decreased",
 							"var expected = Number(postman.getEnvironmentVariable(\"customer_mcoc\"));",
-							"tests[\"Customer's movie check out count increased\"] = customerList[0].movies_checked_out_count === expected;",
+							"tests[\"Customer's movie check out count decreased\"] = customerList[0].movies_checked_out_count === expected;",
 							""
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "{{url}}/customers",
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/customers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"customers"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -383,16 +454,25 @@
 							"tests[\"Data is not an array\"] = !Array.isArray(movie);",
 							"",
 							"var expected = Number(postman.getEnvironmentVariable(\"movie_ai\"));",
-							"tests[\"Movie available_inventory decreased\"] = movie.available_inventory === expected;"
+							"tests[\"Movie available_inventory increased\"] = movie.available_inventory === expected;"
 						]
 					}
 				}
 			],
 			"request": {
-				"url": "{{url}}/movies/{{movie_title}}",
 				"method": "GET",
 				"header": [],
 				"body": {},
+				"url": {
+					"raw": "{{url}}/movies/{{movie_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"movies",
+						"{{movie_id}}"
+					]
+				},
 				"description": ""
 			},
 			"response": []
@@ -420,10 +500,22 @@
 				}
 			],
 			"request": {
-				"url": "{{url}}/rentals/overdue",
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/rentals/overdue",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"rentals",
+						"overdue"
+					]
+				},
 				"description": ""
 			},
 			"response": []

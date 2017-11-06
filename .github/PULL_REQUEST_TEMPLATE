@@ -6,7 +6,6 @@ If you didn't get to the functionality the question is asking about, reply with 
 | Question | Answer    |
 | :------------- | :------------- |
 | Explain how you came up with the design of your ERD, based on the seed data. |  |
-| List all the completed endpoints of your application. |  |
 | Describe a set of positive and negative test cases you implemented for a model.  |  |
 | Describe a set of positive and negative test cases you implemented for a controller.  |  |
 | How does your API respond when bad data is sent to it? |  |
