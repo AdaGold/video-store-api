@@ -24,6 +24,11 @@ gem 'puma', '~> 3.7'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+# group :test do
+#   gem 'minitest-rails'
+#   gem 'minitest-reporters'
+#
+# end
 
 
 group :development, :test do
@@ -31,6 +36,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'minitest-rails'
   gem 'minitest-reporters'
+  gem 'simplecov', '~> 0.12.0'
 end
 
 group :development do
