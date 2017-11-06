@@ -27,6 +27,12 @@ class MovieTest < ActiveSupport::TestCase
       movie.must_be :valid?
     end
 
+    it "a movie is not valid with negative inventory" do
+      movie.must_be :valid?
+      movie.inventory = -1
+      movie.wont_be :valid?
+    end
+
   end
 
 end
