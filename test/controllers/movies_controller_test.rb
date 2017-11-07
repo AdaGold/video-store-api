@@ -53,7 +53,7 @@ describe MoviesController do
     end
 
     it "shows required fields in the movie show page" do
-      keys = %w(available_inventory inventory overview release_date title)
+      keys = %w(available_inventory id inventory overview release_date title)
       get movie_path(movies(:one).id)
       body = JSON.parse(response.body)
       body.keys.sort.must_equal keys

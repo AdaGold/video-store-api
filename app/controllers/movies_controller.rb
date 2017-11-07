@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
     movie = Movie.new(movie_params)
     if movie.save
       render(
-        json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory, :available_inventory]), status: :ok )
+        json: movie.as_json(only: [:id, :title, :overview, :release_date, :inventory, :available_inventory]), status: :ok)
     else
       render json: {errors: movie.errors.messages}, status: :bad_request
     end
