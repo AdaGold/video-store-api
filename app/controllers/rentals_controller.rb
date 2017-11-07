@@ -19,6 +19,13 @@ class RentalsController < ApplicationController
 
   def checkin
     #delete a rentals object that has params matching customer_id and movie_id
+    checkin_rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
+    if checkin_rental
+      checkin_rental.destroy
+      render(status: :ok)
+    else
+      render(ok: false, status: :bad_request)
+    end
   end
 
   def overdue
