@@ -47,10 +47,18 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
     end
 
     it "Should decrease available inventory when a movie is checked out" do
-      proc {
-        post checkout_path, params: {customer_id: customers(:one).id, movie_id: movies(:one).id }
-      }.must_change 'movies(:one).available_inventory', -1
+      movie = movies(:one)
+      expected_movie_inventory = movie.available_inventory - 1
 
+        post checkout_path, params: {customer_id: customers(:one).id, movie_id: movie.id}
+
+      expected_movie_inventory.must_equal movie.available_inventory
+    end
+
+    it "shouldn't allow a checkout for a movie whose available inventory is 0" do
+       proc {
+          post checkout_path, params: {customer_id: customers(:one).id, movie_id: movies(:two).id }
+        }.must_change 'movies(:one).available_inventory', 0
     end
 
   end

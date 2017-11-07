@@ -13,4 +13,4 @@ two:
   overview: test_overview2
   release_date: test_release_date2
   inventory: 2
-  available_inventory: 1
+  available_inventory: 0
