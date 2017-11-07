@@ -91,12 +91,13 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
     end
 
-    it "Should delete an instance of rental" do
-
-    end
-
     it "Available inventory should increase once movie is checked in" do
+      movie = movies(:one)
+      expected_movie_inventory = movie.available_inventory + 1
 
+      post checkin_path, params: { customer_id: customers(:one).id, movie_id: movies(:one).id }
+
+      movie.available_inventory.must_equal expected_movie_inventory
     end
   end
 

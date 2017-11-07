@@ -2,27 +2,24 @@ class Rental < ApplicationRecord
   belongs_to :customer
   belongs_to :movie
 
-  def self.set_checkout(rental)
-    return rental.checkout_date = Date.today.to_s
+  def set_checkout
+    self.checkout_date = Date.today.to_s
   end
 
-  def self.set_due(rental)
-    rental.due_date = (Date.today + 7).to_s
-  end
-
-  def self.available?(movie_id)
-    movie = Movie.find_by(id: movie_id)
-    if movie.available_inventory > 0
-      return true
-    else
-      return false
-    end
+  def set_due
+    self.due_date = (Date.today + 7).to_s
   end
 
   def self.remove_inventory(rental)
     movie = Movie.find_by(id: rental.movie_id)
     inventory = movie.available_inventory - 1
     movie.available_inventory = inventory
+    movie.save
+  end
+
+  def self.increase_inventory(rental)
+    movie = Movie.find_by(id: rental.movie_id)
+    movie.available_inventory += 1
     movie.save
   end
 end
