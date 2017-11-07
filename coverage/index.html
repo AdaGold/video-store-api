@@ -14,27 +14,27 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-06T16:37:06-08:00">2017-11-06T16:37:06-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-06T16:48:38-08:00">2017-11-06T16:48:38-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="green">94.34%</span></span>
+    (<span class="covered_percent"><span class="green">99.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
-         1.29
+         1.31
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>7</b> files in total.
-    <b>106</b> relevant lines. 
-    <span class="green"><b>100</b> lines covered</span> and
-    <span class="red"><b>6</b> lines missed </span>
+    <b>107</b> relevant lines. 
+    <span class="green"><b>106</b> lines covered</span> and
+    <span class="red"><b>1</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -67,16 +67,16 @@
         <td>4</td>
         <td>4</td>
         <td>0</td>
-        <td>3.5</td>
+        <td>4.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#94729cf1ae6e67b4e816f651a5ef6aab0a230dc2" class="src_link" title="app/controllers/movies_controller.rb">app/controllers/movies_controller.rb</a></td>
-        <td class="green strong">94.12 %</td>
+        <td class="green strong">100.0 %</td>
         <td>37</td>
         <td>17</td>
-        <td>16</td>
-        <td>1</td>
+        <td>17</td>
+        <td>0</td>
         <td>2.3</td>
       </tr>
       
@@ -103,20 +103,20 @@
       <tr>
         <td class="strong"><a href="#364e47865826b9c90f82345bf75bf09c5e62c314" class="src_link" title="app/models/movie.rb">app/models/movie.rb</a></td>
         <td class="green strong">100.0 %</td>
+        <td>6</td>
         <td>5</td>
-        <td>4</td>
-        <td>4</td>
+        <td>5</td>
         <td>0</td>
         <td>1.0</td>
       </tr>
       
       <tr>
         <td class="strong"><a href="#55f4a6f79d917217bc47e86c116c87d881d4d97b" class="src_link" title="test/controllers/movies_controller_test.rb">test/controllers/movies_controller_test.rb</a></td>
-        <td class="green strong">94.52 %</td>
-        <td>118</td>
+        <td class="green strong">100.0 %</td>
+        <td>117</td>
         <td>73</td>
-        <td>69</td>
-        <td>4</td>
+        <td>73</td>
+        <td>0</td>
         <td>1.0</td>
       </tr>
       
@@ -217,8 +217,8 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="4">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="4">
+          <span class="hits">7</span>
           
           <code class="ruby">    customers = Customer.all</code>
         </li>
@@ -229,8 +229,8 @@
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="6" data-linenumber="6">
-          <span class="hits">6</span>
+        <li class="covered" data-hits="7" data-linenumber="6">
+          <span class="hits">7</span>
           
           <code class="ruby">    render(</code>
         </li>
@@ -273,11 +273,11 @@
         <div class="source_table" id="94729cf1ae6e67b4e816f651a5ef6aab0a230dc2">
   <div class="header">
     <h3>app/controllers/movies_controller.rb</h3>
-    <h4><span class="green">94.12 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>17</b> relevant lines. 
-      <span class="green"><b>16</b> lines covered</span> and
-      <span class="red"><b>1</b> lines missed.</span>
+      <span class="green"><b>17</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -425,17 +425,17 @@
         <li class="covered" data-hits="3" data-linenumber="24">
           <span class="hits">3</span>
           
-          <code class="ruby">    movie = Movie.create(movie_params)</code>
+          <code class="ruby">    movie = Movie.new(movie_params)</code>
         </li>
       
         <li class="covered" data-hits="3" data-linenumber="25">
           <span class="hits">3</span>
           
-          <code class="ruby">    if movie.valid?</code>
+          <code class="ruby">    if movie.save</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="26">
-          
+        <li class="covered" data-hits="1" data-linenumber="26">
+          <span class="hits">1</span>
           
           <code class="ruby">      render(</code>
         </li>
@@ -452,8 +452,8 @@
           <code class="ruby">    else</code>
         </li>
       
-        <li class="covered" data-hits="3" data-linenumber="29">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="29">
+          <span class="hits">2</span>
           
           <code class="ruby">      render json: {errors: movie.errors.messages}, status: :bad_request</code>
         </li>
@@ -602,8 +602,8 @@
     <h3>app/models/movie.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>4</b> relevant lines. 
-      <span class="green"><b>4</b> lines covered</span> and
+      <b>5</b> relevant lines. 
+      <span class="green"><b>5</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -632,10 +632,16 @@
         <li class="covered" data-hits="1" data-linenumber="4">
           <span class="hits">1</span>
           
-          <code class="ruby">  validates numericality: {only_integer: true, greater_than_or_equal_to: 0}</code>
+          <code class="ruby">  validates :inventory, numericality: {only_integer: true}</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="5">
+        <li class="covered" data-hits="1" data-linenumber="5">
+          <span class="hits">1</span>
+          
+          <code class="ruby">  validates :inventory, numericality: {greater_than_or_equal_to: 0}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="6">
           
           
           <code class="ruby">end</code>
@@ -649,11 +655,11 @@
         <div class="source_table" id="55f4a6f79d917217bc47e86c116c87d881d4d97b">
   <div class="header">
     <h3>test/controllers/movies_controller_test.rb</h3>
-    <h4><span class="green">94.52 %</span> covered</h4>
+    <h4><span class="green">100.0 %</span> covered</h4>
     <div>
       <b>73</b> relevant lines. 
-      <span class="green"><b>69</b> lines covered</span> and
-      <span class="red"><b>4</b> lines missed.</span>
+      <span class="green"><b>73</b> lines covered</span> and
+      <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
   
@@ -1098,271 +1104,265 @@
           <code class="ruby">        inventory: 5,</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="74">
-          
-          
-          <code class="ruby"></code>
-        </li>
-      
-        <li class="covered" data-hits="3" data-linenumber="75">
-          <span class="hits">3</span>
+        <li class="covered" data-hits="2" data-linenumber="74">
+          <span class="hits">2</span>
           
           <code class="ruby">      }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="76">
+        <li class="never" data-hits="" data-linenumber="75">
           
           
           <code class="ruby">    }</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="77">
+        <li class="never" data-hits="" data-linenumber="76">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="78">
+        <li class="covered" data-hits="1" data-linenumber="77">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;can create a movie when given valid required information&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="79">
+        <li class="covered" data-hits="1" data-linenumber="78">
           <span class="hits">1</span>
           
           <code class="ruby">      assert_difference &quot;Movie.count&quot;, 1 do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="80">
+        <li class="covered" data-hits="1" data-linenumber="79">
           <span class="hits">1</span>
           
-          <code class="ruby">        post create_movie_path, params: { movie: movie_data}</code>
+          <code class="ruby">        post create_movie_path, params: { title: &quot;test&quot;, inventory: 5}</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="80">
+          
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="81">
           
           
-          <code class="ruby">      end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="82">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="83">
-          
+        <li class="covered" data-hits="1" data-linenumber="82">
+          <span class="hits">1</span>
           
           <code class="ruby">      body = JSON.parse(response.body)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="84">
-          
+        <li class="covered" data-hits="1" data-linenumber="83">
+          <span class="hits">1</span>
           
           <code class="ruby">      body.must_be_kind_of Hash</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="85">
-          
+        <li class="covered" data-hits="1" data-linenumber="84">
+          <span class="hits">1</span>
           
           <code class="ruby">      body.must_include &quot;id&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="86">
+        <li class="never" data-hits="" data-linenumber="85">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="87">
+        <li class="covered" data-hits="1" data-linenumber="86">
+          <span class="hits">1</span>
+          
+          <code class="ruby">      Movie.find(body[&quot;id&quot;]).title.must_equal &quot;test&quot;</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="87">
           
           
-          <code class="ruby">      Movie.find(body[&quot;id&quot;]).title.must_equal movie_data[:title]</code>
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="88">
           
           
-          <code class="ruby">    end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="89">
+        <li class="covered" data-hits="1" data-linenumber="89">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">    it &quot;returns an error for an invalid movie title&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="90">
           <span class="hits">1</span>
           
-          <code class="ruby">    it &quot;returns an error for an invalid movie title&quot; do</code>
+          <code class="ruby">      bad_data = movie_data.clone()</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="91">
           <span class="hits">1</span>
           
-          <code class="ruby">      bad_data = movie_data.clone()</code>
+          <code class="ruby">      bad_data.delete(:title)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="92">
           <span class="hits">1</span>
           
-          <code class="ruby">      bad_data.delete(:title)</code>
+          <code class="ruby">      assert_no_difference &quot;Movie.count&quot; do</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="93">
           <span class="hits">1</span>
           
-          <code class="ruby">      assert_no_difference &quot;Movie.count&quot; do</code>
+          <code class="ruby">        post create_movie_path, params: { movie: bad_data }</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="94">
           <span class="hits">1</span>
           
-          <code class="ruby">        post create_movie_path, params: { movie: bad_data }</code>
+          <code class="ruby">        assert_response :bad_request</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="95">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="95">
           
-          <code class="ruby">        assert_response :bad_request</code>
+          
+          <code class="ruby">      end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="96">
           
           
-          <code class="ruby">      end</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="97">
+        <li class="covered" data-hits="1" data-linenumber="97">
+          <span class="hits">1</span>
           
-          
-          <code class="ruby"></code>
+          <code class="ruby">      body = JSON.parse(response.body)</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="98">
           <span class="hits">1</span>
           
-          <code class="ruby">      body = JSON.parse(response.body)</code>
+          <code class="ruby">      body.must_be_kind_of Hash</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="99">
           <span class="hits">1</span>
           
-          <code class="ruby">      body.must_be_kind_of Hash</code>
+          <code class="ruby">      body.must_include &quot;errors&quot;</code>
         </li>
       
         <li class="covered" data-hits="1" data-linenumber="100">
           <span class="hits">1</span>
           
-          <code class="ruby">      body.must_include &quot;errors&quot;</code>
+          <code class="ruby">      body[&quot;errors&quot;].must_include &quot;title&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="101">
-          <span class="hits">1</span>
+        <li class="never" data-hits="" data-linenumber="101">
           
-          <code class="ruby">      body[&quot;errors&quot;].must_include &quot;title&quot;</code>
+          
+          <code class="ruby">    end</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="102">
           
           
-          <code class="ruby">    end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="103">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="104">
+        <li class="covered" data-hits="1" data-linenumber="103">
           <span class="hits">1</span>
           
           <code class="ruby">    it &quot;returns an error for an invalid movie title&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="105">
+        <li class="covered" data-hits="1" data-linenumber="104">
           <span class="hits">1</span>
           
           <code class="ruby">      bad_data = movie_data.clone()</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="106">
+        <li class="covered" data-hits="1" data-linenumber="105">
           <span class="hits">1</span>
           
           <code class="ruby">      bad_data.delete(:inventory)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="107">
+        <li class="covered" data-hits="1" data-linenumber="106">
           <span class="hits">1</span>
           
           <code class="ruby">      assert_no_difference &quot;Movie.count&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="108">
+        <li class="covered" data-hits="1" data-linenumber="107">
           <span class="hits">1</span>
           
           <code class="ruby">        post create_movie_path, params: { movie: bad_data }</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="109">
+        <li class="covered" data-hits="1" data-linenumber="108">
           <span class="hits">1</span>
           
           <code class="ruby">        assert_response :bad_request</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="110">
+        <li class="never" data-hits="" data-linenumber="109">
           
           
           <code class="ruby">      end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="111">
+        <li class="never" data-hits="" data-linenumber="110">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="112">
+        <li class="covered" data-hits="1" data-linenumber="111">
           <span class="hits">1</span>
           
           <code class="ruby">      body = JSON.parse(response.body)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="113">
+        <li class="covered" data-hits="1" data-linenumber="112">
           <span class="hits">1</span>
           
           <code class="ruby">      body.must_be_kind_of Hash</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="114">
+        <li class="covered" data-hits="1" data-linenumber="113">
           <span class="hits">1</span>
           
           <code class="ruby">      body.must_include &quot;errors&quot;</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="115">
+        <li class="covered" data-hits="1" data-linenumber="114">
           <span class="hits">1</span>
           
           <code class="ruby">      body[&quot;errors&quot;].must_include &quot;inventory&quot;</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="116">
+        <li class="never" data-hits="" data-linenumber="115">
           
           
           <code class="ruby">    end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="117">
+        <li class="never" data-hits="" data-linenumber="116">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="118">
+        <li class="never" data-hits="" data-linenumber="117">
           
           
           <code class="ruby">end</code>

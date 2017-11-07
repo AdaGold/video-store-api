@@ -70,20 +70,20 @@ describe MoviesController do
     let(:movie_data) {
       {
         title: "a new movie",
-        inventory: 5,
+        inventory: 5
       }
     }
 
     it "can create a movie when given valid required information" do
       assert_difference "Movie.count", 1 do
-        post create_movie_path, params: { movie: movie_data}
+        post create_movie_path, params: { title: "test", inventory: 5}
       end
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Hash
       body.must_include "id"
 
-      Movie.find(body["id"]).title.must_equal movie_data[:title]
+      Movie.find(body["id"]).title.must_equal "test"
     end
 
     it "returns an error for an invalid movie title" do
