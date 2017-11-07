@@ -18,7 +18,7 @@ class Movie < ApplicationRecord
     self.save
   end
 
-  def available? 
+  def available?
     if self.available_inventory > 0
       return true
     else
