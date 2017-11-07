@@ -61,7 +61,7 @@ In the past, many students have spent lots of time writing and testing validatio
 | Field            | Datatype | Description
 |------------------|----------|------------
 | `name`           | string   | The customer's name
-| `registered_at`  | date   | `Wed, 29 Apr 2015 07:54:14 -0700`, When the customer first visited the store
+| `registered_at`  | datetime   | `Wed, 29 Apr 2015 07:54:14 -0700`, When the customer first visited the store
 | `address`        | string   | Street address
 | `city`           | string   | &nbsp;
 | `state`          | string   | &nbsp;
