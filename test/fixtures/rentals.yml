@@ -5,5 +5,5 @@ one:
   checkout_date: MyString
 
 two:
-  due_date: MyString
-  checkout_date: MyString
+  due_date: MyString2
+  checkout_date: MyString2

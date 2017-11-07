@@ -27,15 +27,17 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
       rental.must_equal Rental.count
     end
 
+# TODO
     it "Checkout must be the date created" do
       proc {
         post checkout_path, params: {customer_id: customers(:one).id, movie_id: movies(:one).id }
-      }.checkout_date.must_equal Date.today
+      }.must_change "Rental.count", 1
 
+      Rental.last.checkout_date.must_equal Date.today.to_s
     end
 
     it "Duedate should be 7 days from checkout date" do
-      
+
     end
 
     it "Should decrease available inventory when a movie is checked out" do
