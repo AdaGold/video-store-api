@@ -1,13 +1,20 @@
+
 class RentalsController < ApplicationController
   def checkout
-    #check for available inventory
-    #going to need to accept movie id param from params
-    #user param (also passed through params?)
-    date = Date.today
-    rental = Rental.new rental_params
-    rental.checkout_date = date.to_s
-    rental.due_date = (date + 7).to_s
-    rental.save
+    if params[:movie_id] && Rental.available?(params[:movie_id].to_i)
+      rental = Rental.new rental_params
+      Rental.set_checkout(rental)
+      Rental.set_due(rental)
+      rental.save
+      if rental.save
+        Rental.remove_inventory(rental)
+        render json: rental, status: :ok
+      else
+        render ok: false, status: :bad_request
+      end
+    else
+      render ok: false, status: :bad_request
+    end
   end
 
   def checkin
