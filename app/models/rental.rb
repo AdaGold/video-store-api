@@ -2,8 +2,8 @@ class Rental < ApplicationRecord
   belongs_to :customer
   belongs_to :movie
 
-  def self.set_checkout(rental)
-    return rental.checkout_date = Date.today.to_s
+  def set_checkout
+    self.checkout_date = Date.today.to_s
   end
 
   def self.set_due(rental)

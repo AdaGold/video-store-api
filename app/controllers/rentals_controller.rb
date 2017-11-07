@@ -3,7 +3,8 @@ class RentalsController < ApplicationController
   def checkout
     if params[:movie_id] && Rental.available?(params[:movie_id].to_i)
       rental = Rental.new rental_params
-      Rental.set_checkout(rental)
+      rental.set_checkout
+      puts "#{rental.checkout_date}"
       Rental.set_due(rental)
       # rental.save
       if rental.save
