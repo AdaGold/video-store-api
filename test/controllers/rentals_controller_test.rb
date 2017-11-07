@@ -48,13 +48,13 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
     it "Should decrease available inventory when a movie is checked out" do
       #not working!
-      skip
+
       movie = movies(:one)
       expected_movie_inventory = movie.available_inventory - 1
 
         post checkout_path, params: {customer_id: customers(:one).id, movie_id: movie.id}
 
-      expected_movie_inventory.must_equal movie.available_inventory
+      movie.available_inventory.must_equal expected_movie_inventory
     end
 
     it "shouldn't allow a checkout for a movie whose available inventory is 0" do

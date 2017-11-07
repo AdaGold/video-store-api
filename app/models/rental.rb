@@ -20,8 +20,9 @@ class Rental < ApplicationRecord
   end
 
   def self.remove_inventory(rental)
-    movie = rental.movie
-    movie.available_inventory = movie.available_inventory - 1
+    movie = Movie.find_by(id: rental.movie_id)
+    inventory = movie.available_inventory - 1
+    movie.available_inventory = inventory
     movie.save
   end
 end

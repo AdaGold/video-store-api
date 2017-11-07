@@ -5,7 +5,7 @@ class RentalsController < ApplicationController
       rental = Rental.new rental_params
       Rental.set_checkout(rental)
       Rental.set_due(rental)
-      rental.save
+      # rental.save
       if rental.save
         Rental.remove_inventory(rental)
         render json: rental, status: :ok
