@@ -70,7 +70,7 @@ describe MoviesController do
     let(:movie_data) {
       {
         title: "a new movie",
-        inventory: 5
+        inventory: 5,
       }
     }
 
