@@ -5,9 +5,12 @@ one:
   overview: test_overview
   release_date: test_release_date
   inventory: 1
+  available_inventory: 1
+
 
 two:
   title: test_title2
   overview: test_overview2
   release_date: test_release_date2
   inventory: 2
+  available_inventory: 1
