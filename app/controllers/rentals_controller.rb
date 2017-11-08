@@ -7,7 +7,6 @@ class RentalsController < ApplicationController
       rental = Rental.new rental_params
       rental.set_checkout
       rental.set_due
-      # rental.save
       if rental.save
         movie.remove_inventory
         render json: rental, status: :ok

@@ -49,12 +49,12 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
     it "Should decrease available inventory when a movie is checked out" do
       #not working!
 
-      movie = movies(:one)
+      movie = Movie.find_by(id: movies(:one).id)
       expected_movie_inventory = movie.available_inventory - 1
 
         post checkout_path, params: {customer_id: customers(:one).id, movie_id: movie.id}
 
-      movie.available_inventory.must_equal expected_movie_inventory
+      Movie.find_by(id: movies(:one).id).available_inventory.must_equal expected_movie_inventory
     end
 
     it "shouldn't allow a checkout for a movie whose available inventory is 0" do
@@ -92,12 +92,12 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
     end
 
     it "Available inventory should increase once movie is checked in" do
-      movie = movies(:one)
+      movie = Movie.find_by(id: movies(:one).id)
       expected_movie_inventory = movie.available_inventory + 1
 
       post checkin_path, params: { customer_id: customers(:one).id, movie_id: movies(:one).id }
 
-      movie.available_inventory.must_equal expected_movie_inventory
+    Movie.find_by(id: movies(:one).id).available_inventory.must_equal expected_movie_inventory
     end
   end
 
