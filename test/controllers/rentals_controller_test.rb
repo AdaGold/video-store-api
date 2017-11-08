@@ -103,6 +103,11 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
   describe "Overdue" do
     it "Should return a list of Overdue rentals as of todays date" do
+      get overdue_path
+      must_respond_with :success
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.length.must_equal 1
 
     end
 

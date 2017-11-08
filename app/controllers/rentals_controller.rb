@@ -34,8 +34,12 @@ class RentalsController < ApplicationController
   end
 
   def overdue
-    #search by today's date.
-    #if due date < today's date, return
+    overdue_movies = Rental.where("due_date < :today_date", :today_date => Date.today.to_s)
+    if overdue_movies
+      render(json: overdue_movies, status: :ok)
+    else
+      render(ok: false, status: :bad_request)
+    end
   end
 
   private

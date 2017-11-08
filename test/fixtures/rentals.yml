@@ -3,11 +3,11 @@
 one:
   customer: one
   movie: one
-  due_date: MyString
+  due_date: 2017-11-06
   checkout_date: MyString
 
 two:
   customer: two
   movie: one
-  due_date: MyString2
+  due_date: 2018-11-07
   checkout_date: MyString2
