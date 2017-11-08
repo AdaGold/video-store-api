@@ -18,6 +18,11 @@ class Movie < ApplicationRecord
     self.save
   end
 
+  def increase_inventory
+    self.available_inventory += 1
+    self.save
+  end 
+
   def available?
     if self.available_inventory > 0
       return true

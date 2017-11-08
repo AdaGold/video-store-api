@@ -3,7 +3,7 @@ class RentalsController < ApplicationController
   def checkout
     movie = Movie.find_by(id: params[:movie_id].to_i)
 
-    if params[:movie_id] && movie.available?
+    if movie && movie.available?
       rental = Rental.new rental_params
       rental.set_checkout
       rental.set_due
@@ -24,7 +24,8 @@ class RentalsController < ApplicationController
     checkin_rental = Rental.find_by(customer_id: params[:customer_id], movie_id: params[:movie_id])
 
     if checkin_rental
-      Rental.increase_inventory(checkin_rental)
+      movie = checkin_rental.movie
+      movie.increase_inventory
 
       checkin_rental.destroy
       render(status: :ok)
