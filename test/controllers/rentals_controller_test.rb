@@ -111,8 +111,16 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
     end
 
-    it "Cannot display are list of movies that are not yet overdue" do
+    it "returns an empty array if there are no overdue movies" do
+      rentals(:one).due_date = Date.today.to_s
+      rentals(:one).save
 
+      get overdue_path
+      must_respond_with :success
+
+      body = JSON.parse(response.body)
+      body.must_be_kind_of Array
+      body.length.must_equal 0
     end
   end
 
