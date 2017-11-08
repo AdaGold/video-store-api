@@ -25,7 +25,7 @@ class RentalsController < ApplicationController
 
     if checkin_rental
       movie = checkin_rental.movie
-      movie.increase_inventory
+      movie.add_inventory
 
       checkin_rental.destroy
       render(status: :ok)
