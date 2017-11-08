@@ -26,9 +26,10 @@ describe MoviesController do
       body.length.must_equal Movie.count
     end
 
-# TODO
+
     it "returns movies with the required fields" do
       skip
+      # skipping this test due to issue with serialize. Spoke with Dan. No solution found as of yet.
       keys = %w(id release_date  title)
       get movies_path
       body = JSON.parse(response.body)
@@ -56,7 +57,7 @@ describe MoviesController do
 
 # TODO
     it "shows required fields in the movie show page" do
-      skip
+      # skip
       keys = %w(available_inventory id inventory overview release_date title)
       get movie_path(movies(:one).id)
       body = JSON.parse(response.body)

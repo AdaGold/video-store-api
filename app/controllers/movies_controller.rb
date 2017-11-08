@@ -4,6 +4,7 @@ class MoviesController < ApplicationController
   render(
       # json: movies.as_json(only: [:title, :release_date, :id]), status: :ok
       json: movies, status: :ok
+
     )
   end
 
