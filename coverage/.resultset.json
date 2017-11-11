@@ -442,16 +442,6 @@
         null,
         null
       ],
-      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/customer_serializer.rb": [
-        1,
-        1,
-        null
-      ],
-      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/movie_serializer.rb": [
-        1,
-        1,
-        null
-      ],
       "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/rentals_controller.rb": [
         null,
         1,
@@ -502,8 +492,18 @@
         5,
         null,
         null
+      ],
+      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/movie_serializer.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/customer_serializer.rb": [
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1510178690
+    "timestamp": 1510178821
   }
 }
