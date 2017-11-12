@@ -1,7 +1,7 @@
 {
   "MiniTest": {
     "coverage": {
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/controllers/customers_controller.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/customers_controller.rb": [
         1,
         null,
         1,
@@ -11,14 +11,14 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/controllers/application_controller.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/application_controller.rb": [
         1,
         1,
         0,
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/test/controllers/movies_controller_test.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/test/controllers/movies_controller_test.rb": [
         1,
         null,
         1,
@@ -142,7 +142,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/controllers/movies_controller.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/movies_controller.rb": [
         1,
         1,
         5,
@@ -185,7 +185,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/test/controllers/rentals_controller_test.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/test/controllers/rentals_controller_test.rb": [
         1,
         null,
         null,
@@ -314,7 +314,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/test/models/customer_test.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/test/models/customer_test.rb": [
         1,
         null,
         1,
@@ -333,7 +333,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/models/customer.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/models/customer.rb": [
         1,
         1,
         1,
@@ -341,12 +341,12 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/models/application_record.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/models/application_record.rb": [
         1,
         1,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/test/models/movie_test.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/test/models/movie_test.rb": [
         1,
         null,
         1,
@@ -390,7 +390,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/models/movie.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/models/movie.rb": [
         1,
         1,
         1,
@@ -421,7 +421,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/test/models/rental_test.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/test/models/rental_test.rb": [
         1,
         null,
         1,
@@ -430,7 +430,7 @@
         null,
         null
       ],
-      "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/models/rental.rb": [
+      "/Users/canaan/Desktop/VideoStoreAPI/app/models/rental.rb": [
         1,
         1,
         1,
@@ -444,7 +444,21 @@
         null,
         null
       ],
+<<<<<<< HEAD
       "/Users/marisamorris/Documents/ada developers academy/week_14/VideoStoreAPI/app/controllers/rentals_controller.rb": [
+=======
+      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/customer_serializer.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/movie_serializer.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/rentals_controller.rb": [
+>>>>>>> 800574c98ddcb34a4d29a0775e6ccf1adca407b6
         null,
         1,
         1,
@@ -506,6 +520,10 @@
         null
       ]
     },
+<<<<<<< HEAD
     "timestamp": 1510178938
+=======
+    "timestamp": 1510178690
+>>>>>>> 800574c98ddcb34a4d29a0775e6ccf1adca407b6
   }
 }
