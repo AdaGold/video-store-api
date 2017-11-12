@@ -28,7 +28,7 @@ class CustomerTest < ActiveSupport::TestCase
     end
 
     it "raises argument error if sort term is invalid" do
-      Customer.sort_by("girl").errors.must_include("Invalid Sort Term")
+      Customer.sort_by("girl").must_raise ArgumentError
 
     end
   end
