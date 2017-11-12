@@ -59,18 +59,32 @@ describe CustomersController do
   describe "index with optional params" do
     it "should get a list of customers sorted by ID if no term is given" do
       get customers_path
-      value(response).must_be :success?
+      must_respond_with :success
     end
 
     it "should get a list of customers sorted by term if " do
       get customers_path
-      value(response).must_be :success?
+      must_respond_with :success
     end
 
     it "should return a list of customers sorted by term when the terms are valid" do
-      get customers_path, params: {sort: "girl"}
-      value(response).must_be :success?
+      terms =["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
+
+      terms.each do |term|
+        get customers_path, params: {sort: term}
+        must_respond_with :success
+      end
     end
+
+    it "should render bad request for invalid sort params" do
+      terms =["girl", "tostido", "orange leaves", "nope"]
+
+      terms.each do |term|
+        get customers_path, params: {sort: term}
+        must_respond_with :bad_request
+      end
+    end
+
 
   end
 end
