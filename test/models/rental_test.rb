@@ -35,6 +35,7 @@ class RentalTest < ActiveSupport::TestCase
       r = Rental.create(movie: Movie.first, customer: Customer.first)
       date = Date.today + 7
       r.valid?.must_equal true
+
       r.set_due
       r.due_date.must_equal date.to_s
     end

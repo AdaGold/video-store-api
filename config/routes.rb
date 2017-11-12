@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   post 'rentals/checkin', to: 'rentals#checkin', as: 'checkin'
   get 'rentals/overdue', to: 'rentals#overdue', as: 'overdue'
 
-  get '/zomg', to: "application#zomg"
+  get '/zomg', to: "application#zomg", as: "zomg"
 
 end
