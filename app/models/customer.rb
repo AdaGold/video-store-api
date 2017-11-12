@@ -5,10 +5,13 @@ class Customer < ApplicationRecord
   # validates :postal_code, presence: true
 
   def self.sort_by(term)
+    terms =["name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
     if term.nil?
       self.order(:id)
-    else
+    elsif terms.include?(term)
       self.order(term.to_sym)
+    else
+      raise ArgumentError.new("Invalid Sort Term")
     end
   end
 end

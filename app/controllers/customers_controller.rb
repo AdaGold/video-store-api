@@ -4,5 +4,4 @@ class CustomersController < ApplicationController
     customers = Customer.sort_by(params[:term])
     render json: customers, status: :ok
   end
-
 end
