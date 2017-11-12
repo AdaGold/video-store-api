@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-12T14:54:31-08:00">2017-11-12T14:54:31-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-12T15:00:33-08:00">2017-11-12T15:00:33-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         3.37
+         5.58
        </span>
     </span> hits/line)
   </h2>
@@ -67,7 +67,7 @@
         <td>7</td>
         <td>7</td>
         <td>0</td>
-        <td>9.9</td>
+        <td>16.7</td>
       </tr>
       
       <tr>
@@ -87,7 +87,7 @@
         <td>11</td>
         <td>11</td>
         <td>0</td>
-        <td>7.3</td>
+        <td>13.2</td>
       </tr>
       
       <tr>
@@ -217,20 +217,20 @@
           <code class="ruby">  def index</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="4">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="37" data-linenumber="4">
+          <span class="hits">37</span>
           
           <code class="ruby">    begin</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="5">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="37" data-linenumber="5">
+          <span class="hits">37</span>
           
           <code class="ruby">      customers = Customer.sort_by(params[:sort])</code>
         </li>
       
-        <li class="covered" data-hits="17" data-linenumber="6">
-          <span class="hits">17</span>
+        <li class="covered" data-hits="33" data-linenumber="6">
+          <span class="hits">33</span>
           
           <code class="ruby">      render json: customers, status: :ok</code>
         </li>
@@ -363,32 +363,32 @@
           <code class="ruby">  def self.sort_by(term)</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="8">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="37" data-linenumber="8">
+          <span class="hits">37</span>
           
           <code class="ruby">    terms =[&quot;id&quot;, &quot;name&quot;, &quot;city&quot;, &quot;state&quot;, &quot;postal_code&quot;, &quot;registered_at&quot;, &quot;account_credit&quot;, &quot;movies_checked_out_count&quot;]</code>
         </li>
       
-        <li class="covered" data-hits="21" data-linenumber="9">
-          <span class="hits">21</span>
+        <li class="covered" data-hits="37" data-linenumber="9">
+          <span class="hits">37</span>
           
           <code class="ruby">    if term.nil?</code>
         </li>
       
-        <li class="covered" data-hits="9" data-linenumber="10">
-          <span class="hits">9</span>
+        <li class="covered" data-hits="8" data-linenumber="10">
+          <span class="hits">8</span>
           
           <code class="ruby">      self.order(:id)</code>
         </li>
       
-        <li class="covered" data-hits="12" data-linenumber="11">
-          <span class="hits">12</span>
+        <li class="covered" data-hits="29" data-linenumber="11">
+          <span class="hits">29</span>
           
           <code class="ruby">    elsif terms.include?(term)</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="12">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="25" data-linenumber="12">
+          <span class="hits">25</span>
           
           <code class="ruby">      self.order(term.to_sym)</code>
         </li>

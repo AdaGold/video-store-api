@@ -57,19 +57,14 @@ describe CustomersController do
   end
 
   describe "index with optional params" do
+    let(:terms){["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]}
+
     it "should get a list of customers sorted by ID if no term is given" do
       get customers_path
       must_respond_with :success
     end
 
-    it "should get a list of customers sorted by term if " do
-      get customers_path
-      must_respond_with :success
-    end
-
     it "should return a list of customers sorted by term when the terms are valid" do
-      terms =["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
-
       terms.each do |term|
         get customers_path, params: {sort: term}
         must_respond_with :success
@@ -77,11 +72,37 @@ describe CustomersController do
     end
 
     it "should render bad request for invalid sort params" do
-      terms =["girl", "tostido", "orange leaves", "nope"]
+      bad_terms =["girl", "tostido", "orange leaves", "nope"]
 
-      terms.each do |term|
+      bad_terms.each do |term|
         get customers_path, params: {sort: term}
         must_respond_with :bad_request
+      end
+    end
+
+    ##
+    it "returns json" do
+      terms.each do |term|
+        get customers_path, params: {sort: term}
+        response.header['Content-Type'].must_include 'json'
+      end
+    end
+
+    it "returns an Array" do
+      terms.each do |term|
+        get customers_path, params: {sort: term}
+
+        body = JSON.parse(response.body)
+        body.must_be_kind_of Array
+      end
+    end
+
+    it "returns all of the customers" do
+      terms.each do |term|
+        get customers_path, params: {sort: term}
+
+        body = JSON.parse(response.body)
+        body.length.must_equal Customer.count
       end
     end
 
