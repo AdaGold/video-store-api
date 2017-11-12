@@ -39,4 +39,26 @@ class MovieTest < ActiveSupport::TestCase
       movie.wont_be :valid?
     end
   end
+
+  describe "custom methods" do
+    let(:movie) {movies(:one)}
+    it "add_inventory increases available inventory by 1" do
+      expected_inventory = movie.available_inventory + 1
+      movie.add_inventory
+      movie.available_inventory.must_equal expected_inventory
+    end
+
+    it "remove_inventory decreases available inventory by 1" do
+      expected_inventory = movie.available_inventory - 1
+      movie.remove_inventory
+      movie.available_inventory.must_equal expected_inventory
+    end
+
+    it "available? returns true if there is available inventory for a movie" do
+      movie.available_inventory.must_equal 1
+      # movie.available?.must_equal true
+
+    end
+
+  end
 end
