@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
   # validates :postal_code, presence: true
 
   def self.sort_by(term)
-    terms =["name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
+    terms =["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
     if term.nil?
       self.order(:id)
     elsif terms.include?(term)
