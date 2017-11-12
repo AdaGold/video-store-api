@@ -9,9 +9,17 @@ one:
   phone: test_phone
 
 two:
-  name: test_name2
-  address: test_address2
+  name: my_test_name2
+  address: my_test_address2
   city: test_city2
   state: test_state2
   postal_code: test_postal2
   phone: test_phone2
+
+three:
+    name: a_test_name1
+    address: a_test_address
+    city: test_city_3
+    state: test_state3
+    postal_code: test_postal2
+    phone: test_phone2

@@ -71,6 +71,14 @@ describe CustomersController do
       end
     end
 
+    it "should return list sorted by field" do
+      get customers_path, params: {sort: "name"}
+      must_respond_with :success
+      body = JSON.parse(response.body)
+      body.first["name"].must_equal "a_test_name1"
+    end
+
+
     it "should render bad request for invalid sort params" do
       bad_terms =["girl", "tostido", "orange leaves", "nope"]
 
@@ -105,7 +113,5 @@ describe CustomersController do
         body.length.must_equal Customer.count
       end
     end
-
-
   end
 end
