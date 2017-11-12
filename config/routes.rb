@@ -9,10 +9,7 @@ Rails.application.routes.draw do
   post 'rentals/checkin', to: 'rentals#checkin', as: 'checkin'
   get 'rentals/overdue', to: 'rentals#overdue', as: 'overdue'
 
-  get '/customers?sort=${field}', to: 'customers#sort_by', as:'sort_by' do
-    get '/&n=${n}&p=${p}', to: 'customers#paged', as:'paged'
-
-  end
+  get '/customers?sort=:field&n=:perpage&p=:page', to: 'customers#sort_by', as:'sort_by'
 
   get '/zomg', to: "application#zomg"
 

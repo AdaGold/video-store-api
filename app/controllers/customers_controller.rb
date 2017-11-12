@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
 
   def index
-    customers = Customer.all
+    customers = Customer.sort_by(params[:term])
     render json: customers, status: :ok
   end
 
