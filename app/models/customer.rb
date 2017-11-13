@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
 
   def self.sort_by(term, n=10, p=1)
     terms =["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
-    start = (p.to_i-1)*10
+    start = (p.to_i-1)*n.to_i
     finish = (p.to_i)*n.to_i - 1
     if term.nil?
       self.order(:id)[start..finish]
