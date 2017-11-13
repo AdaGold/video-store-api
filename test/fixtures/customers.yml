@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   name: test_name
   address: test_address
   city: test_city
@@ -9,9 +10,19 @@ one:
   phone: test_phone
 
 two:
-  name: test_name2
-  address: test_address2
+  id: 2
+  name: my_test_name2
+  address: my_test_address2
   city: test_city2
   state: test_state2
   postal_code: test_postal2
   phone: test_phone2
+
+three:
+    id: 3
+    name: a_test_name1
+    address: a_test_address
+    city: test_city_3
+    state: test_state3
+    postal_code: test_postal2
+    phone: test_phone2

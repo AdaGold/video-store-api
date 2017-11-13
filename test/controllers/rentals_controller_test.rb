@@ -69,8 +69,12 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
     it "Should check in a movie with required params" do
       expected_rental = Rental.count - 1
 
-      post checkin_path, params: {customer_id: customers(:one).id, movie_id: movies(:one).id}
+      # rental = Rental.find_by(customer_id: customers(:one).id)
+      #
+      # rental.must_equal nil
 
+      post checkin_path, params: {customer_id: Customer.find(customers(:one).id).id, movie_id: Movie.find(movies(:one).id).id}
+      # Rental.reload!
       expected_rental.must_equal Rental.count
     end
 

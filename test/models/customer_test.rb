@@ -14,4 +14,22 @@ class CustomerTest < ActiveSupport::TestCase
       customer.wont_be :valid?
     end
   end
+
+  describe "sort_by" do
+    it "Returns a list sorted by ID if term is nil" do
+      Customer.sort_by(nil).count.must_equal 3
+      Customer.sort_by(nil).first.id.must_equal 1
+    end
+
+    it "Sorts by valid params" do
+      Customer.sort_by("name").count.must_equal 3
+      Customer.sort_by("name").first.name.must_equal "a_test_name1"
+      Customer.sort_by("name").last.name.must_equal "test_name"
+    end
+
+    it "raises argument error if sort term is invalid" do
+      Customer.sort_by("girl").must_raise ArgumentError
+
+    end
+  end
 end
