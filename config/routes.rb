@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'movies', to: 'movies#create', as: 'create_movie'
 
   get 'customers', to: 'customers#index', as: 'customers'
-  get "/customers?sort=sort", to: 'customers#index', as:'customers_sorted'
+  get "/customers?sort=sort&n=n&p=p", to: 'customers#index', as:'customers_sorted'
 
 
 
