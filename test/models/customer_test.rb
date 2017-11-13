@@ -28,7 +28,7 @@ class CustomerTest < ActiveSupport::TestCase
     end
 
     it "raises argument error if sort term is invalid" do
-      Customer.sort_by("girl", nil, nil).must_raise ArgumentError
+      proc {Customer.sort_by("girl", nil, nil)}.must_raise ArgumentError
     end
 
     it "displays n number of results per page (default 10)" do
@@ -42,6 +42,14 @@ class CustomerTest < ActiveSupport::TestCase
       ten.length.must_equal 10
       ten.first.id.must_equal Customer.first.id
       ten.last.id.must_equal Customer.all[9].id
+    end
+
+    it "Raises an argument error if given invalid value for p" do
+      proc  {Customer.sort_by("id", nil, "invalid")}.must_raise ArgumentError
+    end
+
+    it "Raises an argument error if given invalid value for n" do
+      proc  {Customer.sort_by("id", "invalid", nil)}.must_raise ArgumentError
     end
   end
 end

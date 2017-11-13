@@ -476,7 +476,7 @@
         null,
         null,
         1,
-        1,
+        2,
         null,
         null,
         1,
@@ -492,6 +492,14 @@
         1,
         null,
         null,
+        1,
+        2,
+        null,
+        null,
+        1,
+        2,
+        null,
+        null,
         null
       ],
       "/Users/canaan/Desktop/VideoStoreAPI/app/models/customer.rb": [
@@ -502,10 +510,16 @@
         null,
         null,
         1,
+        54,
+        54,
+        54,
+        null,
+        54,
+        2,
+        null,
+        null,
         52,
-        52,
-        52,
-        52,
+        null,
         52,
         52,
         null,
@@ -739,6 +753,6 @@
         null
       ]
     },
-    "timestamp": 1510537350
+    "timestamp": 1510537643
   }
 }

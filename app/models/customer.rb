@@ -8,7 +8,13 @@ class Customer < ApplicationRecord
     term ||= "id"
     n ||= "10"
     p ||= "1"
+    
+    unless p.to_i > 0 && n.to_i > 0
+      raise ArgumentError
+    end
+
     terms =["id", "name", "city", "state", "postal_code", "registered_at", "account_credit", "movies_checked_out_count"]
+
     start = (p.to_i-1)*n.to_i
     finish = (p.to_i)*n.to_i - 1
 

@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-12T17:42:30-08:00">2017-11-12T17:42:30-08:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2017-11-12T17:47:23-08:00">2017-11-12T17:47:23-08:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,15 +25,15 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         2.84
+         2.97
        </span>
     </span> hits/line)
   </h2>
   <a name="AllFiles"></a>
   <div>
     <b>16</b> files in total.
-    <b>406</b> relevant lines. 
-    <span class="green"><b>406</b> lines covered</span> and
+    <b>412</b> relevant lines. 
+    <span class="green"><b>412</b> lines covered</span> and
     <span class="red"><b>0</b> lines missed </span>
   </div>
   <table class="file_list">
@@ -103,11 +103,11 @@
       <tr>
         <td class="strong"><a href="#d05eb5061f2be615333d9b366659f6338b32d348" class="src_link" title="app/models/customer.rb">app/models/customer.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>21</td>
-        <td>14</td>
-        <td>14</td>
+        <td>27</td>
+        <td>16</td>
+        <td>16</td>
         <td>0</td>
-        <td>30.1</td>
+        <td>30.2</td>
       </tr>
       
       <tr>
@@ -183,9 +183,9 @@
       <tr>
         <td class="strong"><a href="#c1bd5ef7fd95c45305195a4742f0f49d2f0c079e" class="src_link" title="test/models/customer_test.rb">test/models/customer_test.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>47</td>
-        <td>28</td>
-        <td>28</td>
+        <td>55</td>
+        <td>32</td>
+        <td>32</td>
         <td>0</td>
         <td>1.4</td>
       </tr>
@@ -986,8 +986,8 @@
     <h3>app/models/customer.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>14</b> relevant lines. 
-      <span class="green"><b>14</b> lines covered</span> and
+      <b>16</b> relevant lines. 
+      <span class="green"><b>16</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -1037,85 +1037,121 @@
           <code class="ruby">  def self.sort_by(term, n, p)</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="8">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="54" data-linenumber="8">
+          <span class="hits">54</span>
           
           <code class="ruby">    term ||= &quot;id&quot;</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="9">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="54" data-linenumber="9">
+          <span class="hits">54</span>
           
           <code class="ruby">    n ||= &quot;10&quot;</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="10">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="54" data-linenumber="10">
+          <span class="hits">54</span>
           
           <code class="ruby">    p ||= &quot;1&quot;</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="11">
-          <span class="hits">52</span>
+        <li class="never" data-hits="" data-linenumber="11">
           
-          <code class="ruby">    terms =[&quot;id&quot;, &quot;name&quot;, &quot;city&quot;, &quot;state&quot;, &quot;postal_code&quot;, &quot;registered_at&quot;, &quot;account_credit&quot;, &quot;movies_checked_out_count&quot;]</code>
+          
+          <code class="ruby">    </code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="12">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="54" data-linenumber="12">
+          <span class="hits">54</span>
           
-          <code class="ruby">    start = (p.to_i-1)*n.to_i</code>
+          <code class="ruby">    unless p.to_i &gt; 0 &amp;&amp; n.to_i &gt; 0</code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="13">
-          <span class="hits">52</span>
+        <li class="covered" data-hits="2" data-linenumber="13">
+          <span class="hits">2</span>
           
-          <code class="ruby">    finish = (p.to_i)*n.to_i - 1</code>
+          <code class="ruby">      raise ArgumentError</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="14">
           
           
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="15">
+          
+          
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="52" data-linenumber="15">
+        <li class="covered" data-hits="52" data-linenumber="16">
           <span class="hits">52</span>
           
-          <code class="ruby">    if terms.include?(term)</code>
-        </li>
-      
-        <li class="covered" data-hits="47" data-linenumber="16">
-          <span class="hits">47</span>
-          
-          <code class="ruby">      self.order(term.to_sym)[start..finish]</code>
+          <code class="ruby">    terms =[&quot;id&quot;, &quot;name&quot;, &quot;city&quot;, &quot;state&quot;, &quot;postal_code&quot;, &quot;registered_at&quot;, &quot;account_credit&quot;, &quot;movies_checked_out_count&quot;]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="17">
           
           
-          <code class="ruby">    else</code>
+          <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="5" data-linenumber="18">
-          <span class="hits">5</span>
+        <li class="covered" data-hits="52" data-linenumber="18">
+          <span class="hits">52</span>
           
-          <code class="ruby">      raise ArgumentError.new(&quot;Invalid Sort Term&quot;)</code>
+          <code class="ruby">    start = (p.to_i-1)*n.to_i</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="19">
+        <li class="covered" data-hits="52" data-linenumber="19">
+          <span class="hits">52</span>
           
-          
-          <code class="ruby">    end</code>
+          <code class="ruby">    finish = (p.to_i)*n.to_i - 1</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="20">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="52" data-linenumber="21">
+          <span class="hits">52</span>
+          
+          <code class="ruby">    if terms.include?(term)</code>
+        </li>
+      
+        <li class="covered" data-hits="47" data-linenumber="22">
+          <span class="hits">47</span>
+          
+          <code class="ruby">      self.order(term.to_sym)[start..finish]</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="23">
+          
+          
+          <code class="ruby">    else</code>
+        </li>
+      
+        <li class="covered" data-hits="5" data-linenumber="24">
+          <span class="hits">5</span>
+          
+          <code class="ruby">      raise ArgumentError.new(&quot;Invalid Sort Term&quot;)</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="25">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="26">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="21">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby">end</code>
@@ -3790,8 +3826,8 @@
     <h3>test/models/customer_test.rb</h3>
     <h4><span class="green">100.0 %</span> covered</h4>
     <div>
-      <b>28</b> relevant lines. 
-      <span class="green"><b>28</b> lines covered</span> and
+      <b>32</b> relevant lines. 
+      <span class="green"><b>32</b> lines covered</span> and
       <span class="red"><b>0</b> lines missed.</span>
     </div>
   </div>
@@ -3979,10 +4015,10 @@
           <code class="ruby">    it &quot;raises argument error if sort term is invalid&quot; do</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="31">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="2" data-linenumber="31">
+          <span class="hits">2</span>
           
-          <code class="ruby">      Customer.sort_by(&quot;girl&quot;, nil, nil).must_raise ArgumentError</code>
+          <code class="ruby">      proc {Customer.sort_by(&quot;girl&quot;, nil, nil)}.must_raise ArgumentError</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="32">
@@ -4072,10 +4108,58 @@
         <li class="never" data-hits="" data-linenumber="46">
           
           
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="47">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;Raises an argument error if given invalid value for p&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="48">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      proc  {Customer.sort_by(&quot;id&quot;, nil, &quot;invalid&quot;)}.must_raise ArgumentError</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="49">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="50">
+          
+          
+          <code class="ruby"></code>
+        </li>
+      
+        <li class="covered" data-hits="1" data-linenumber="51">
+          <span class="hits">1</span>
+          
+          <code class="ruby">    it &quot;Raises an argument error if given invalid value for n&quot; do</code>
+        </li>
+      
+        <li class="covered" data-hits="2" data-linenumber="52">
+          <span class="hits">2</span>
+          
+          <code class="ruby">      proc  {Customer.sort_by(&quot;id&quot;, &quot;invalid&quot;, nil)}.must_raise ArgumentError</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="53">
+          
+          
+          <code class="ruby">    end</code>
+        </li>
+      
+        <li class="never" data-hits="" data-linenumber="54">
+          
+          
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="47">
+        <li class="never" data-hits="" data-linenumber="55">
           
           
           <code class="ruby">end</code>
