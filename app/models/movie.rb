@@ -26,4 +26,27 @@ class Movie < ApplicationRecord
     end
   end
 
+  def self.sort_by(term, n, p)
+    term ||= "id"
+    n ||= "10"
+    p ||= "1"
+
+    unless n.to_i > 0 && p.to_i > 0
+      raise ArgumentError.new("Invalid page or per page input")
+    end
+
+    terms =["id", "title", "release_date"]
+
+    start = (p.to_i-1)*n.to_i
+    finish = (p.to_i)*n.to_i - 1
+
+    if terms.include?(term)
+      self.order(term.to_sym)[start..finish]
+    else
+      raise ArgumentError.new("Invalid Sort Term")
+    end
+
+
+  end
+
 end

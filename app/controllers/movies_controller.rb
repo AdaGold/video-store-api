@@ -1,10 +1,8 @@
 class MoviesController < ApplicationController
   def index
-    movies = Movie.all
+    movies = Movie.sort_by(params[:sort], params[:n], params[:p])
   render(
       json: movies.as_json(only: [:title, :release_date, :id]), status: :ok
-      # json: movies, status: :ok
-
     )
   end
 
