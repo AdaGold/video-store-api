@@ -39,7 +39,7 @@ class RentalsController < ApplicationController
       render(json: overdue_movies, status: :ok)
     else
       render json: []
-    end 
+    end
   end
 
   private

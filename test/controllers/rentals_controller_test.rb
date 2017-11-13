@@ -67,15 +67,21 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
 
   describe "Checkin" do
     it "Should check in a movie with required params" do
-      expected_rental = Rental.count - 1
+      rental_count = Rental.count
 
-      # rental = Rental.find_by(customer_id: customers(:one).id)
-      #
-      # rental.must_equal nil
-
-      post checkin_path, params: {customer_id: Customer.find(customers(:one).id).id, movie_id: Movie.find(movies(:one).id).id}
+      post checkin_path, params: {customer_id: rentals(:one).customer_id, movie_id: rentals(:one).movie_id}
       # Rental.reload!
-      expected_rental.must_equal Rental.count
+
+      rental_count.must_equal Rental.count + 1
+    end
+
+    it "can find rental by customer ID and Movie ID" do
+      rental = Rental.create(movie_id: movies(:one).id, customer_id: customers(:one).id)
+      rental.valid?.must_equal true
+      rental_id = rental.id
+
+      find = Rental.find_by(customer_id: customers(:one).id, movie_id: movies(:one).id)
+      find.id.must_equal rental_id
     end
 
     it "Should require a user ID " do
@@ -99,9 +105,9 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
       movie = Movie.find_by(id: movies(:one).id)
       expected_movie_inventory = movie.available_inventory + 1
 
-      post checkin_path, params: { customer_id: customers(:one).id, movie_id: movies(:one).id }
+      post checkin_path, params: {customer_id: rentals(:one).customer_id, movie_id: rentals(:one).movie_id}
 
-    Movie.find_by(id: movies(:one).id).available_inventory.must_equal expected_movie_inventory
+      Movie.find_by(id: movies(:one).id).available_inventory.must_equal expected_movie_inventory
     end
   end
 
@@ -116,15 +122,14 @@ class RentalsControllerTest < ActionDispatch::IntegrationTest
     end
 
     it "returns an empty array if there are no overdue movies" do
-      rentals(:one).due_date = Date.today.to_s
-      rentals(:one).save
+      rentals(:one).destroy
 
       get overdue_path
       must_respond_with :success
 
       body = JSON.parse(response.body)
       body.must_be_kind_of Array
-      body.length.must_equal 0
+      body.must_equal []
     end
   end
 
