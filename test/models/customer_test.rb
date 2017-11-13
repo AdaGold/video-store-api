@@ -17,19 +17,31 @@ class CustomerTest < ActiveSupport::TestCase
 
   describe "sort_by" do
     it "Returns a list sorted by ID if term is nil" do
-      Customer.sort_by(nil).count.must_equal 3
-      Customer.sort_by(nil).first.id.must_equal 1
+      Customer.sort_by(nil, nil, nil).count.must_equal 3
+      Customer.sort_by(nil, nil, nil).first.id.must_equal 1
     end
 
     it "Sorts by valid params" do
-      Customer.sort_by("name").count.must_equal 3
-      Customer.sort_by("name").first.name.must_equal "a_test_name1"
-      Customer.sort_by("name").last.name.must_equal "test_name"
+      Customer.sort_by("name", nil, nil).count.must_equal 3
+      Customer.sort_by("name", nil, nil).first.name.must_equal "a_test_name1"
+      Customer.sort_by("name", nil, nil).last.name.must_equal "test_name"
     end
 
     it "raises argument error if sort term is invalid" do
-      Customer.sort_by("girl").must_raise ArgumentError
+      Customer.sort_by("girl", nil, nil).must_raise ArgumentError
+    end
 
+    it "displays n number of results per page (default 10)" do
+      10.times do |i|
+        Customer.create(name: "#{i}", movies_checked_out_count: i)
+      end
+
+      Customer.count.must_equal 13
+
+      ten = Customer.sort_by("id", nil, nil)
+      ten.length.must_equal 10
+      ten.first.id.must_equal Customer.first.id
+      ten.last.id.must_equal Customer.all[9].id
     end
   end
 end
