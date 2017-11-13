@@ -107,13 +107,12 @@
         null,
         null,
         1,
-        1,
         null,
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        2,
         null,
         null,
         null,
@@ -203,8 +202,8 @@
       "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/movies_controller.rb": [
         1,
         1,
-        5,
-        5,
+        6,
+        6,
         null,
         null,
         null,
@@ -560,11 +559,6 @@
         null,
         null
       ],
-      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/movie_serializer.rb": [
-        1,
-        1,
-        null
-      ],
       "/Users/canaan/Desktop/VideoStoreAPI/app/controllers/rentals_controller.rb": [
         null,
         1,
@@ -604,9 +598,9 @@
         1,
         2,
         2,
-        2,
+        1,
         null,
-        0,
+        1,
         null,
         null,
         null,
@@ -616,12 +610,17 @@
         null,
         null
       ],
+      "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/movie_serializer.rb": [
+        1,
+        1,
+        null
+      ],
       "/Users/canaan/Desktop/VideoStoreAPI/app/serializers/customer_serializer.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1510531026
+    "timestamp": 1510531319
   }
 }

@@ -28,9 +28,8 @@ describe MoviesController do
 
 
     it "returns movies with the required fields" do
-      skip
-      # skipping this test due to issue with serialize. Spoke with Dan. No solution found as of yet.
-      keys = %w(id release_date  title)
+      # we couldn't use the normal serialize for this test; we had to narrow in on certain keys within the controller using "only" in order to get this test to pass.
+      keys = %w(id release_date title)
       get movies_path
       body = JSON.parse(response.body)
       body.each do |movie|
