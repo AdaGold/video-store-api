@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: test_title
+  overview: test_overview
+  release_date: test_release_date
+  inventory: 1
+  available_inventory: 1
+
+
+two:
+  title: a_test_title
+  overview: test_overview2
+  release_date: test_release_date2
+  inventory: 2
+  available_inventory: 0
