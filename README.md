@@ -53,7 +53,7 @@ In the past, many students have spent lots of time writing and testing validatio
 |----------------|----------|------------
 | `title`        | string   | The title of the film
 | `overview`     | string   | A short plot synopsis
-| `release_date` | string   | `YYYY-MM-DD`, Day the film was originally released
+| `release_date` | date   | `YYYY-MM-DD`, Day the film was originally released
 | `inventory`    | integer  | How many copies of the film the video store owns
 
 `customers.json` contains information about the customers that have rented with the store in the past. The data is presented as, you guessed it, an array of objects, with each object have the following key-value pairs:
@@ -61,7 +61,7 @@ In the past, many students have spent lots of time writing and testing validatio
 | Field            | Datatype | Description
 |------------------|----------|------------
 | `name`           | string   | The customer's name
-| `registered_at`  | string   | `Wed, 29 Apr 2015 07:54:14 -0700`, When the customer first visited the store
+| `registered_at`  | datetime   | `Wed, 29 Apr 2015 07:54:14 -0700`, When the customer first visited the store
 | `address`        | string   | Street address
 | `city`           | string   | &nbsp;
 | `state`          | string   | &nbsp;
