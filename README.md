@@ -25,7 +25,7 @@ Your project will be evaluated against the following requirements:
   - Models: All relations, validations, and custom model methods should include at least one positive and one negative test case
   - Controllers: Every API endpoint should include at least one positive and one negative test case
 - Style and Organization
-  - Business logic should be live in models
+  - Everything we've learned so far about how to design and build a Rails app still applies!
 
 ## Project Baseline
 - Read the API Requirements below and create a pseudo-code "routes" file that specifies
@@ -73,7 +73,7 @@ As with all Rails projects, model testing is a requirement. You should have _at 
 
 Use good TDD practices, and test _before_ you code. Remember: red-green-refactor.
 
-## Waves 2 Coding The API
+## Waves 2 and 3: Coding The API
 In this wave, you will implement the API described below. The endpoints are described more-or-less in order of complexity, and we recommend you build them in that order. Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
 The schema of your database and the structure of your rails app are completely up to you, so long as the API conforms to the description and provided script.
@@ -130,6 +130,8 @@ The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collec
 
 ## API Description
 
+### Wave 2: Customers and Movies
+
 #### `GET /customers`
 List all customers
 
@@ -178,7 +180,7 @@ Request body:
 | `release_date` | string `YYYY-MM-DD` | Date the movie was released
 | `inventory` | integer | Quantity available in the video store
 
-### Optional Rentals
+### Wave 3: Rentals
 
 Wave 2 focused on working with customers and movies. With these endpoints you can extend the functionality of your API to allow managing the rental process.
 
@@ -205,18 +207,7 @@ Request body:
 | `customer_id` | integer  | ID of the customer checking in this film
 | `movie_id` | integer | ID of the movie to be checked in
 
-#### `GET /rentals/overdue`
-List all customers with overdue movies
-
-Fields to return:
-- `title`
-- `customer_id`
-- `name`
-- `postal_code`
-- `checkout_date`
-- `due_date`
-
-## Going Further
+## Optional Enhancements
 These really are **optional** - if you've gotten here and you have time left, that means you're moving speedy fast!
 
 ### Query Parameters
@@ -247,6 +238,18 @@ Things to note:
 
 ### More Endpoints: Inventory Management
 All these endpoints should support all 3 query parameters. All fields are sortable.
+
+#### `GET /rentals/overdue`
+List all customers with overdue movies
+
+Fields to return:
+- `movie_id`
+- `title`
+- `customer_id`
+- `name`
+- `postal_code`
+- `checkout_date`
+- `due_date`
 
 #### `GET /movies/:id/current`
 List customers that have _currently_ checked out a copy of the film
