@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "VideoStoreAPI With Optionals",
-		"_postman_id": "f2b06e79-722a-2ee9-ab25-60682ec158dd",
-		"description": "",
+		"_postman_id": "0e4e765d-e505-4cdd-a6e0-c32f8bcb8e92",
+		"name": "VideoStoreAPI Wave 3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -72,8 +71,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -118,7 +116,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies",
 					"host": [
@@ -127,8 +128,7 @@
 					"path": [
 						"movies"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -167,7 +167,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -177,8 +180,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -231,8 +233,7 @@
 						"rentals",
 						"check-out"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -283,8 +284,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -316,7 +316,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -326,8 +329,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -380,8 +382,7 @@
 						"rentals",
 						"check-in"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -420,7 +421,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/customers",
 					"host": [
@@ -429,8 +433,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -462,7 +465,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -472,51 +478,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "List Overdue Movies",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// Check headers",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"",
-							"var contentType = postman.getResponseHeader(\"Content-Type\");",
-							"tests[\"Content-Type is present\"] = contentType;",
-							"tests[\"Content-Type is application/json\"] = contentType.has('application/json');",
-							"",
-							"// Check data format",
-							"var jsonData = JSON.parse(responseBody);",
-							"tests[\"Data is an array\"] = Array.isArray(jsonData);"
-						]
-					}
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/rentals/overdue",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"rentals",
-						"overdue"
-					]
-				},
-				"description": ""
 			},
 			"response": []
 		}
