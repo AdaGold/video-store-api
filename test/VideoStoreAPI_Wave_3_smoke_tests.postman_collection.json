@@ -190,6 +190,7 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "f58b2427-e72e-4c76-a830-f714e65942be",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
@@ -199,15 +200,10 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "decbbae7-c4e7-40ad-852d-e682814daac8",
 						"type": "text/javascript",
 						"exec": [
-							"var today = new Date();",
-							"",
-							"// Get 1 week from today. Works at the end of the month too.",
-							"var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);",
-							"",
-							"// toDateString produces \"Wed Jul 28 1993\", which fortunately Rails is able to parse",
-							"postman.setEnvironmentVariable(\"future_due_date\", nextWeek.toDateString());"
+							""
 						]
 					}
 				}
@@ -222,7 +218,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}},\n\t\"due_date\": \"{{future_due_date}}\"\n}"
+					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}}\n}"
 				},
 				"url": {
 					"raw": "{{url}}/rentals/check-out",
