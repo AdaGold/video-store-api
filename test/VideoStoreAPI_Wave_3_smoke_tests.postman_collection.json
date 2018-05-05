@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "VideoStoreAPI With Optionals",
-		"_postman_id": "f2b06e79-722a-2ee9-ab25-60682ec158dd",
-		"description": "",
+		"_postman_id": "0e4e765d-e505-4cdd-a6e0-c32f8bcb8e92",
+		"name": "VideoStoreAPI Wave 3",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -72,8 +71,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -118,7 +116,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies",
 					"host": [
@@ -127,8 +128,7 @@
 					"path": [
 						"movies"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -167,7 +167,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -177,8 +180,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -188,6 +190,7 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "f58b2427-e72e-4c76-a830-f714e65942be",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
@@ -197,15 +200,10 @@
 				{
 					"listen": "prerequest",
 					"script": {
+						"id": "decbbae7-c4e7-40ad-852d-e682814daac8",
 						"type": "text/javascript",
 						"exec": [
-							"var today = new Date();",
-							"",
-							"// Get 1 week from today. Works at the end of the month too.",
-							"var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 7);",
-							"",
-							"// toDateString produces \"Wed Jul 28 1993\", which fortunately Rails is able to parse",
-							"postman.setEnvironmentVariable(\"future_due_date\", nextWeek.toDateString());"
+							""
 						]
 					}
 				}
@@ -220,7 +218,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}},\n\t\"due_date\": \"{{future_due_date}}\"\n}"
+					"raw": "{\n\t\"movie_id\": {{movie_id}},\n\t\"customer_id\": {{customer_id}}\n}"
 				},
 				"url": {
 					"raw": "{{url}}/rentals/check-out",
@@ -231,8 +229,7 @@
 						"rentals",
 						"check-out"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -283,8 +280,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -316,7 +312,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -326,8 +325,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -380,8 +378,7 @@
 						"rentals",
 						"check-in"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -420,7 +417,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/customers",
 					"host": [
@@ -429,8 +429,7 @@
 					"path": [
 						"customers"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -462,7 +461,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -472,51 +474,7 @@
 						"movies",
 						"{{movie_id}}"
 					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "List Overdue Movies",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"type": "text/javascript",
-						"exec": [
-							"// Check headers",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;",
-							"",
-							"var contentType = postman.getResponseHeader(\"Content-Type\");",
-							"tests[\"Content-Type is present\"] = contentType;",
-							"tests[\"Content-Type is application/json\"] = contentType.has('application/json');",
-							"",
-							"// Check data format",
-							"var jsonData = JSON.parse(responseBody);",
-							"tests[\"Data is an array\"] = Array.isArray(jsonData);"
-						]
-					}
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/rentals/overdue",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"rentals",
-						"overdue"
-					]
-				},
-				"description": ""
 			},
 			"response": []
 		}

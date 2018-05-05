@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "VideoStoreAPI",
-		"_postman_id": "2abd77b8-ba62-17d3-b550-7ff6a41482b2",
-		"description": "",
+		"_postman_id": "b30b98ea-fdfe-4cc2-979f-d6f464ad4cdd",
+		"name": "VideoStoreAPI Wave 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -120,7 +119,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies",
 					"host": [
@@ -168,7 +170,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{movie_id}}",
 					"host": [
@@ -236,25 +241,21 @@
 						{
 							"key": "title",
 							"value": "{{movie_title}}",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "overview",
 							"value": "This movie was created by the Postman smoke tests.",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "release_date",
 							"value": "1990-01-01",
-							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "inventory",
 							"value": "5",
-							"description": "",
 							"type": "text"
 						}
 					]
@@ -267,8 +268,7 @@
 					"path": [
 						"movies"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -305,7 +305,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{url}}/movies/{{created_movie_id}}",
 					"host": [
