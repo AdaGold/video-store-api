@@ -110,6 +110,8 @@ The smoke tests will verify that your API looks correct to the outside world, by
 - Did the API return JSON?
 - Does the JSON contain the expected property names?
 
+We have also included [this video](https://adaacademy.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=741c70cb-cf4a-48ae-a771-a989015fd864) to show you how to run and use smoke tests.
+
 **The smoke tests are not a substitute for writing your own tests!!!!!** They do **not** check that the content is _correct_, nor do they cover any negative or edge cases. Verifying correctness in these cases is **your** responsibility.
 
 The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collection.json`](test/VideoStoreAPI_smoke_tests.postman_collection.json). To run them:
