@@ -20,7 +20,7 @@ This is a [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/mast
 ## Success Criteria
 Your project will be evaluated against the following requirements:
 
-- API conformance
+- API conformity
   - The provided smoke tests should pass (see the subfolder)
   - Bad data sent to the API should result in an appropriate status code and helpful error
 - Test coverage
