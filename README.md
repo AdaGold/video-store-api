@@ -225,8 +225,8 @@ Any endpoint that returns a list should accept 3 _optional_ [query parameters](h
 So, for an API endpoint like `GET /customers`, the following requests should be valid:
 - `GET /customers`: All customers, sorted by ID
 - `GET /customers?sort=name`: All customers, sorted by name
-- `GET /customers?n=10&p=2`: Customers 10-19, sorted by ID
-- `GET /customers?sort=name&n=10&p=2`: Customers 10-19, sorted by name
+- `GET /customers?n=10&p=2`: Customers 11-20, sorted by ID
+- `GET /customers?sort=name&n=10&p=2`: Customers 11-20, sorted by name
 
 Of course, adding new features means you should be adding new controller tests to verify them.
 
