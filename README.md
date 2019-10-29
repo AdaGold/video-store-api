@@ -5,7 +5,7 @@ We will use Rails to construct a RESTful API. The purpose of this API is to quic
 
 This is a pair project. You and your partner should use all the techniques we've learned so far to keep yourselves organized and on track, and ensure that no requirements slip through the cracks.
 
-This project is due: **Friday November 9th**
+This project is due: **Due Date goes here**
 
 ## Learning Goals
 Upon completing this project, students should be able to:
@@ -30,8 +30,7 @@ Your project will be evaluated against the following requirements:
   - Everything we've learned so far about how to design and build a Rails app still applies!
 
 ## Project Baseline
-- Read the API Requirements below and create a pseudo-code "routes" file that specifies
-  - The _endpoints_ your API will need
+- Read the API Requirements specified in the [Wave 2 & 3 requirements section](https://github.com/Ada-C12/video-store-api#wave-2-customers-and-movies) and take note of the following for each endpoint
   - The _HTTP verbs_ each endpoint will use
   - Any data that must be provided to the endpoint in order for it to do its work
 - Read the Seed Data description below and, bearing in mind the API Requirements, create an ERD for your database that specifies
@@ -116,7 +115,7 @@ We have also included [this video](https://adaacademy.hosted.panopto.com/Panopto
 
 **The smoke tests are not a substitute for writing your own tests!!!!!** They do **not** check that the content is _correct_, nor do they cover any negative or edge cases. Verifying correctness in these cases is **your** responsibility.
 
-The smoke tests live in the file [`test/VideoStoreAPI_smoke_tests.postman_collection.json`](test/VideoStoreAPI_smoke_tests.postman_collection.json). To run them:
+The smoke tests live in the [test folder](test). To run them:
 
 1. Open Postman
 1. Click `Import` in the top left
