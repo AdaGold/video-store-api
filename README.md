@@ -15,7 +15,7 @@ Upon completing this project, students should be able to:
 - Respond reasonably to bad user data in the context of an API
 - Verify the correctness of an API using controller tests
 
-This is a [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md) project.
+This is a [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/classroom/rule-of-three.md#stage-2) project.
 
 ## Success Criteria
 Your project will be evaluated against the following requirements:
