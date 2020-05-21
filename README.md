@@ -1,23 +1,39 @@
-# Project: VideoStoreAPI
-The goal of this project is to create a system that a video store (remember those?) could use to track their inventory of rental videos and their list of customers.
+# Video Store API
 
-We will use Rails to construct a RESTful API. The purpose of this API is to quickly serve information about the store's video collection, customer information, and to update rental status. This repository provides two JSON datafiles to serve as the initial seeds for this system.
+## At a Glance
+- Pair, [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/rule-of-three.md#stage-2) project
+- Due EOD Friday at 6 PM on **DATE HERE**
+- Submit this project with a PR
 
-This is a pair project. You and your partner should use all the techniques we've learned so far to keep yourselves organized and on track, and ensure that no requirements slip through the cracks.
+## Introduction
 
-This project is due: **Due Date goes here**
+[Video rental stores](https://en.wikipedia.org/wiki/Video_rental_shop) are businesses that need to track a lot of things. Namely, they need to keep track of:
+
+- the store's inventory of videos available for rental
+- their customers
+
+A small video rental business would use software to help manage this data.
 
 ## Learning Goals
-Upon completing this project, students should be able to:
 
-- Build an ERD and set up ActiveRecord models for a given dataset / use-case
-- Expose database contents through a web API
-- Respond reasonably to bad user data in the context of an API
-- Verify the correctness of an API using controller tests
+- Design an API in Rails that is compatible with a given dataset, and design an ERD and ActiveRecord models
+- Build an API that exposes database contents
+- Apply best practices to handle edge-cases in the context of an API, and reasonably handle bad user data
+- Practice testing APIs through writing controller tests
 
-This is a [stage 2](https://github.com/Ada-Developers-Academy/pedagogy/blob/master/classroom/rule-of-three.md#stage-2) project.
+## Objective
 
-## Success Criteria
+We will make an API in Rails for a small video rental store.
+
+This API will be able to serve information about the store's inventory of videos and customer information.
+
+The API will also be able to update the status of rental.
+
+This repository provides two JSON datafiles to serve as the initial seeds for this system.
+
+You and your team should use all the techniques we've learned so far to keep yourselves organized and on track, and ensure that no requirements slip through the cracks.
+
+### Success Criteria
 Your project will be evaluated against the following requirements:
 
 - API conformity
