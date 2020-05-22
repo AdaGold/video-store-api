@@ -134,18 +134,18 @@ Use good TDD practices, and test _before_ you code. Remember: red-green-refactor
 ### Smoke Tests
 
 #### What are Smoke Tests?
-APIs are made to be used in combination with other apps. Nobody can use just an API-- other developers need to rely on it. Think back to the Slack CLI project or Inspiration Board project.
+APIs are made to be used in combination with other apps. Think back to other projects where we've used an API. Wouldn't it be nice if we had tests that made sure an API was working as intended?
 
 To this end, we have provided a set of [smoke tests](http://softwaretestingfundamentals.com/smoke-testing/) written in Postman to exercise all the endpoints.
 
-Smoke tests are a *type of automated test.* The responsibility of smoke tests is to use a more language/tool-agnostic set of test cases and to verify if something works more broadly. They are written to be fast and to check the most important features of an app.
-
-The tests we've been writing before this are *unit tests.* Unit tests are focused on testing small, detailed features within the same code base as the app. Our unit tests were written alongside our implementation code, and both usually were in the same language.
+Smoke tests are a *type of automated test.* The responsibility of smoke tests is to use more language/tool-agnostic set of test cases and to verify if something works very broadly. They are written to be fast and to check the most important features of an app.
 
 Our smoke tests are *not* written in Ruby. They are formatted in JSON, and we will use Postman to run them (and not `rails test`.) This layer of testing helps us test that the API works, without relying on Ruby's Minitest.
 
 <details>
   <summary>Want a little bit more explanation about smoke tests, unit tests, integration tests?</summary>
+
+  The tests we've been writing before this are *unit tests.* Unit tests are focused on testing small, detailed features within the same code base as the app. Our unit tests were written alongside our implementation code, and both usually were in the same language.
 
   Our unit tests relied on us knowing a lot about our app. When we write and use our unit tests, they are checking that we're using Rails correctly; our tests check if we've set up model relationships with Active Record correctly, or that our view helpers are correct, or a lot of things that are in high-detail.
 
@@ -184,13 +184,19 @@ The smoke tests live in the [test folder](test). To run them:
 1. Click the blue `Run` button. This will launch the collection runner.
 1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
 
+Ideally, by the time of project submission, all smoke tests will pass.
+
 ## Functional Requirements
 
 ### Error Handling Requirements for Every Endpoint
 
-As a reminder: it's crucial for all APIs to be able to handle errors.
+It's crucial for all APIs to be able to handle errors. For every required endpoint described in this project, handle errors in this pattern.
 
-If something goes wrong, your API should return an appropriate [HTTP status code](http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/), as well as a list of errors. For this project, the list of errors should be formatted like this:
+If something goes wrong, your API should return:
+- an appropriate [HTTP status code](http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/)
+- a list of errors
+
+For this project, the list of errors should be formatted like this:
 
 ```json
 {
