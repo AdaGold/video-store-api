@@ -12,7 +12,7 @@
 - the store's inventory of videos available for rental
 - their customers
 
-A small video rental business would use software to help manage this data.
+A small video rental business wants to start using software to help manage this data. They've already documented their video and customer information into files. Now, they're asking our team to build an API for them!
 
 ## Learning Goals
 
@@ -25,32 +25,27 @@ A small video rental business would use software to help manage this data.
 
 We will make an API in Rails for a small video rental store.
 
-This API will be able to serve information about the store's inventory of videos and customer information.
-
-The API will also be able to update the status of rental.
-
-This repository provides two JSON datafiles to serve as the initial seeds for this system.
+This API will be able to serve information about the store's inventory of videos and customer information. The API will also be able to update the status of rental.
 
 You and your team should use all the techniques we've learned so far to keep yourselves organized and on track, and ensure that no requirements slip through the cracks.
 
 ### Project Structure
 
-In the "Testing Requirements" section, there is a description of the smoke tests required for this project.
+In the **"Testing Requirements"** section, there is a description of the smoke tests required for this project.
 
-In the "Setup Requirements" section, there is Wave 0, which focuses on creating the design of this project and setting up the Rails app. It also describes the database seeds script provided in this project.
+In the **"Setup Requirements"** section, there is Wave 0, which focuses on creating the design of this project and setting up the Rails app. It also describes the database seeds script provided in this project.
 
-In the "Functional Requirements" section, Waves 1 and 2 will focus on describing the required endpoints for this project. These endpoints are described more-or-less in order of complexity. It's recommend to build them in that order. TODO: Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
+In the **"Functional Requirements"** section, Waves 1 and 2 will focus on describing the required endpoints for this project. These endpoints are described more-or-less in order of complexity. It's recommend to build them in that order. TODO: Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
-The schema of your database and the structure of your Rails app are completely up to you, so long as the API conforms to the description and provided script.
+**The schema of your database and the structure of your Rails app are completely up to you, so long as the API conforms to the description and provided script.**
 
 ### Success Criteria
 Your project will be evaluated against the following requirements:
 
 1. The API conforms to the requirements below, and all provided smoke tests pass (see section below)
-  1. This should have equal emphasis on positive cases, and handling errors
-1. The Rails API has tests on some model validations, and full test coverage on every controller action
-  1. In this project, the only required model tests are those around validations
-  1. Every controller action/API endpoint should have at least one positive test case and at least one negative test case
+1. The API has unit tests on **model validations**, and full test coverage on **every** controller action
+    - In this project, the only required model tests are those around validations.
+    - Every controller action/API endpoint should have at least one positive test case and at least one negative test case.
 
 ## Setup Requirements
 
