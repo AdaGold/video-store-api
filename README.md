@@ -219,35 +219,36 @@ Fields to return:
 - `registered_at`
 - `postal_code`
 - `phone`
-- `movies_checked_out_count`
+- `videos_checked_out_count`
   - This will be 0 unless you've completed optional requirements
 
-#### `GET /movies`
-List all movies
+#### `GET /videos`
+List all videos
 
 Fields to return:
 - `id`
 - `title`
 - `release_date`
 
-#### `GET /movies/:id`
-Look a movie up by `id`
+#### `GET /video/:id`
+Look a video up by `id`
 
 URI parameters:
-- `id`: Movie identifier
+- `id`: Video identifier
 
 Fields to return:
 - `title`
 - `overview`
 - `release_date`
-- `inventory` (total)
-- `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` unless you've completed the optional endpoints.
+- `total_inventory`
+<!-- - `available_inventory` (not currently checked-out to a customer) -->
+  <!-- - This will be the same as `inventory` unless you've completed the optional endpoints. -->
 
-#### `POST /movies`
-Create a new movie in the video store inventory.
+#### `POST /videos`
+Create a new video in the video store inventory.
 
 Upon success, this request should return the `id` of the movie created.
+<!-- When is this not valid -->
 
 Request body:
 
@@ -255,8 +256,8 @@ Request body:
 |---------------|---------------------|------------
 | `title` | string             | Title of the movie
 | `overview` | string | Descriptive summary of the movie
-| `release_date` | string `YYYY-MM-DD` | Date the movie was released
-| `inventory` | integer | Quantity available in the video store
+| `release_date` | string | Date the movie was released
+| `total_inventory` | integer | Quantity available in the video store
 
 ### Wave 2: Rentals
 
@@ -264,6 +265,7 @@ Wave 1 focused on working with customers and movies. With these endpoints you ca
 
 #### `POST /rentals/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today, and the due date should be set to a week from today.
+<!-- WHAT IS A DUE DATE -->
 
 **Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
 
