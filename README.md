@@ -35,7 +35,7 @@ In the **"Testing Requirements"** section, there is a description of the smoke t
 
 In the **"Setup Requirements"** section, there is Wave 0, which focuses on creating the design of this project and setting up the Rails app. It also describes the database seeds script provided in this project.
 
-In the **"Functional Requirements"** section, Waves 1 and 2 will focus on describing the required endpoints for this project. These endpoints are described more-or-less in order of complexity. It's recommend to build them in that order. TODO: Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
+In the **"Functional Requirements"** section, Waves 1 and 2 will focus on describing the required endpoints for this project. These endpoints are described more-or-less in order of complexity. It's recommend to build them in that order.
 
 **The schema of your database and the structure of your Rails app are completely up to you, so long as the API conforms to the description and provided script.**
 
@@ -187,6 +187,8 @@ The smoke tests live in the [test folder](test). To run them:
 Ideally, by the time of project submission, all smoke tests will pass.
 
 ## Functional Requirements
+
+Every endpoint must serve JSON data, and must use HTTP response codes to indicate the status of the request.
 
 ### Error Handling Requirements for Every Endpoint
 
