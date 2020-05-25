@@ -21,6 +21,25 @@ class RentalsController < ApplicationController
     }, status: :created
   end
 
+  def check_in
+    rental = Rental.find_by(customer_id: params[:customer_id], video_id: params[:video_id])
+
+    customer = Customer.find_by(id: params[:customer_id])
+    customer.update(videos_checked_out_count: customer.videos_checked_out_count-1)
+
+    video = Video.find_by(id: params[:video_id])
+    video.update(available_inventory: video.available_inventory+1)
+    
+    render json: {
+      id: rental.id,
+      customer_id: rental.customer_id,
+      video_id: rental.video_id,
+      videos_checked_out_count: rental.customer.videos_checked_out_count,
+      available_inventory: rental.video.available_inventory
+    }
+  end
+
+  private
   
   def rental_params
     return params.permit([:customer_id, :video_id])

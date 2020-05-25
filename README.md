@@ -288,6 +288,11 @@ Look at the structure of the request body. In Rails, the Rails convention for pa
 #### `POST /rentals/check-in`
 Check in one of a customer's rentals
 
+<!-- Add in requirements about Customer videos_checked_out_count -->
+<!-- Add in requirements about Video available_inventory -->
+<!-- What does it give back???? -->
+<!-- Does not delete the number of renatls -->
+
 Request body:
 
 | Field         | Datatype | Description

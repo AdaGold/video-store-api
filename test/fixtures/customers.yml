@@ -6,4 +6,4 @@ valid_customer:
   state: Test State
   postal_code: Test Postal Code
   phone: Test Phone
-  videos_checked_out_count: 0
+  videos_checked_out_count: 2

@@ -1,0 +1,3 @@
+valid_rental:
+  customer: valid_customer
+  video: rented_video

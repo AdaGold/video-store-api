@@ -4,3 +4,9 @@ valid_video:
   release_date: Test Date
   total_inventory: 10
   available_inventory: 5
+rented_video:
+  title: Video That Is Rented By valid_customer, under valid_rental
+  overview: Test Overview
+  release_date: Test Date
+  total_inventory: 100
+  available_inventory: 50
