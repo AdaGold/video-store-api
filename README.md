@@ -300,11 +300,11 @@ Status: `200`
 
 ```json
 {
-    "title": "Blacksmith Of The Banished",
-    "overview": "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
-    "release_date": "1979-01-18",
-    "total_inventory": 10,
-    "available_inventory": 9
+  "title": "Blacksmith Of The Banished",
+  "overview": "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
+  "release_date": "1979-01-18",
+  "total_inventory": 10,
+  "available_inventory": 9
 }
 ```
 
@@ -313,45 +313,111 @@ Status: `200`
 - The API should return back detailed errors and a status `404` if this video does not exist.
 
 #### `POST /videos`
-Create a new video in the video store inventory.
+Creates a new video with the given params.
 
-Upon success, this request should return the `id` of the movie created.
-<!-- When is this not valid -->
+##### Required Request Body Parameters
 
-Request body:
+Request Body Param | Type | Details
+--- | --- | ---
+`title` | string | The title of the video
+`overview` | string | An overview of the video
+`release_date` | string | Represents the date of the video's release
+`total_inventory` | integer | The total quantity of this video in the store
+`available_inventory` | integer | The available quantity of this video in the store
 
-| Field         | Datatype            | Description
-|---------------|---------------------|------------
-| `title` | string             | Title of the movie
-| `overview` | string | Descriptive summary of the movie
-| `release_date` | string `YYYY-MM-DD` | Date the movie was released
-| `inventory` | integer | Quantity available in the video store
+##### Response
 
-### Wave 2: Rentals
+Typical success response, where `id` is the id of the new video:
 
-Wave 1 focused on working with customers and movies. With these endpoints you can extend the functionality of your API to allow managing the rental process.
+Status: `201: Created`
+
+```json
+{
+  "id": 277419104
+}
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return back detailed errors and a status `400: Bad Request` if the video does not have any of the required fields to be valid.
+
+### Wave 2: Making Rentals with Checking In and Checking Out
 
 #### `POST /rentals/check-out`
-Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today, and the due date should be set to a week from today.
 
-**Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
+[Checks out](https://www.merriam-webster.com/dictionary/checkout) a video to a customer, and updates the data in the database as such.
 
-Request body:
+When successful, this request should:
+- increase the customer's `videos_checked_out_count` by one
+- decrease the video's `available_inventory` by one
+- create a due date. The rental's due date is the seven days from the current date.
 
-| Field         | Datatype            | Description
-|---------------|---------------------|------------
-| `customer_id` | integer             | ID of the customer checking out this film
-| `movie_id`    | integer | ID of the movie to be checked out
+##### Required Request Body Parameters
+
+Request Body Param | Type | Details
+--- | --- | ---
+`customer_id` | integer | ID of the customer attempting to check out this video
+`video_id` | integer | ID of the video to be checked out
+
+##### Response
+
+Typical success response:
+
+Status: `200`
+
+```json
+{
+  "customer_id": 122581016,
+  "video_id": 235040983,
+  "due_date": "2020-06-31",
+  "videos_checked_out_count": 2,
+  "available_inventory": 5
+}
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
+- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
+- The API should return back detailed errors and a status `400: Bad Request` if the video does not have any available inventory before check out
+
+##### Hint: Params Not Nested
+
+Look at the structure of the request body. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
 
 #### `POST /rentals/check-in`
-Check in one of a customer's rentals
+[Checks in](https://www.merriam-webster.com/dictionary/check-in) a video to a customer, and updates the data in the database as such.
 
-Request body:
+When successful, this request should:
+- decrease the customer's `videos_checked_out_count` by one
+- increase the video's `available_inventory` by one
 
-| Field         | Datatype | Description
-|---------------|----------|------------
-| `customer_id` | integer  | ID of the customer checking in this film
-| `movie_id`    | integer | ID of the movie to be checked in
+##### Required Request Body Parameters
+
+Request Body Param | Type | Details
+--- | --- | ---
+`customer_id` | integer | ID of the customer attempting to check out this video
+`video_id` | integer | ID of the video to be checked out
+
+##### Response
+
+Typical success response:
+
+Status: `200`
+
+```json
+{
+  "customer_id": 122581016,
+  "video_id": 277419103,
+  "videos_checked_out_count": 1,
+  "available_inventory": 6
+}
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
+- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
 
 ## Optional Enhancements
 These really are **optional** - if you've gotten here and you have time left, that means you're moving speedy fast!
