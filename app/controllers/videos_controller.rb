@@ -6,7 +6,7 @@ class VideosController < ApplicationController
   end
 
   def show
-    video = Video.find_by(id: params[:id]).as_json(only: [:title, :overview, :release_date, :total_inventory])
+    video = Video.find_by(id: params[:id]).as_json(only: [:title, :overview, :release_date, :total_inventory, :available_inventory])
 
     render json: video, status: :ok
   end
@@ -29,6 +29,6 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    return params.require(:video).permit(:title, :overview, :release_date, :total_inventory)
+    return params.require(:video).permit(:title, :overview, :release_date, :total_inventory, :available_inventory)
   end
 end

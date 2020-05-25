@@ -267,6 +267,7 @@ Wave 1 focused on working with customers and movies. With these endpoints you ca
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today, and the due date should be set to a week from today.
 <!-- WHAT IS A DUE DATE -->
 <!-- Add in requirements about Customer videos_checked_out_count -->
+<!-- Add in requirements about Video available_inventory -->
 <!-- What does it give back???? -->
 
 **Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?

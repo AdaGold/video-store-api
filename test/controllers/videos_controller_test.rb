@@ -22,7 +22,7 @@ describe VideosController do
   
       body = check_response(expected_type: Hash)
 
-      expect(body.keys.sort).must_equal ["title", "overview", "release_date", "total_inventory"].sort
+      expect(body.keys.sort).must_equal ["title", "overview", "release_date", "total_inventory", "available_inventory"].sort
     end
   end
 
@@ -33,7 +33,8 @@ describe VideosController do
           title: "Create Test Title",
           overview: "Create Test Overview",
           release_date: "Create Release Date",
-          total_inventory: 5  
+          total_inventory: 5,
+          available_inventory: 3
         }
       }
 
