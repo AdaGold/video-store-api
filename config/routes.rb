@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   resources :customers
   resources :videos
+
+  post '/rentals/check-out', to: 'rentals#check_out', as: 'check_out'
 end

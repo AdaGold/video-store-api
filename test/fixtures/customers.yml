@@ -1,0 +1,9 @@
+valid_customer:
+  name: Test Name
+  registered_at: Test Registered At Date
+  address: Test Address
+  city: Test City
+  state: Test State
+  postal_code: Test Postal Code
+  phone: Test Phone
+  videos_checked_out_count: 0

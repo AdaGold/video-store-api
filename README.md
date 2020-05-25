@@ -266,6 +266,8 @@ Wave 1 focused on working with customers and movies. With these endpoints you ca
 #### `POST /rentals/check-out`
 Check out one of the movie's inventory to the customer. The rental's check-out date should be set to today, and the due date should be set to a week from today.
 <!-- WHAT IS A DUE DATE -->
+<!-- Add in requirements about Customer videos_checked_out_count -->
+<!-- What does it give back???? -->
 
 **Note:** Some of the fields from wave 2 should now have interesting values. Good thing you wrote tests for them, right... right?
 
@@ -274,7 +276,13 @@ Request body:
 | Field         | Datatype            | Description
 |---------------|---------------------|------------
 | `customer_id` | integer             | ID of the customer checking out this film
-| `movie_id`    | integer | ID of the movie to be checked out
+| `video_id`    | integer | ID of the video to be checked out
+
+##### Params Not Nested
+
+Look at the structure of the request body. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
+
+<!-- Add resource for: strong params -->
 
 #### `POST /rentals/check-in`
 Check in one of a customer's rentals
