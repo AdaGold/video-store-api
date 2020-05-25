@@ -212,44 +212,111 @@ All errors your API can return should be covered by at least one controller test
 
 ### Wave 1: Customers and Movies
 
-#### `GET /customers`
-List all customers
+#### `GET` `/customers`
 
-Fields to return:
-- `id`
-- `name`
-- `registered_at`
-- `postal_code`
-- `phone`
-- `movies_checked_out_count`
-  - This will be 0 unless you've completed optional requirements
+Lists all existing customers and details about each customer.
 
-#### `GET /movies`
-List all movies
+##### Required Arguments
 
-Fields to return:
-- `id`
-- `title`
-- `release_date`
+No arguments to this request
 
-#### `GET /movies/:id`
-Look a movie up by `id`
+##### Response
 
-URI parameters:
-- `id`: Movie identifier
+Typical success response:
 
-Fields to return:
-- `title`
-- `overview`
-- `release_date`
-- `inventory` (total)
-- `available_inventory` (not currently checked-out to a customer)
-  - This will be the same as `inventory` unless you've completed the optional endpoints.
+Status: `200`
 
-#### `POST /movies`
-Create a new movie in the video store inventory.
+```json
+[
+  {
+    "id": 1,
+    "name": "Shelley Rocha",
+    "registered_at": "Wed, 29 Apr 2015 07:54:14 -0700",
+    "postal_code": "24309",
+    "phone": "(322) 510-8695",
+    "videos_checked_out_count": 0
+  },
+  {
+    "id": 2,
+    "name": "Curran Stout",
+    "registered_at": "Wed, 16 Apr 2014 21:40:20 -0700",
+    "postal_code": "94267",
+    "phone": "(908) 949-6758",
+    "videos_checked_out_count": 0
+  }
+]
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return an empty array and a status `200` if there are no customers.
+
+#### `GET /videos`
+Lists all existing videos and details about each video.
+
+##### Required Arguments
+
+No arguments to this request
+
+##### Response
+
+Typical success response:
+
+Status: `200`
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Blacksmith Of The Banished",
+    "release_date": "1979-01-18"
+  },
+  {
+    "id": 2,
+    "title": "Savior Of The Curse",
+    "release_date": "2010-11-05"
+  }
+]
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return an empty array and a status `200` if there are no videos.
+
+#### `GET /video/:id`
+Gives back details about specific video in the store's inventory.
+
+##### Required Arguments
+
+Arg | Type | Details
+--- | --- | ---
+`id` | integer | The id of the video
+
+##### Response
+
+Typical success response:
+
+Status: `200`
+
+```json
+{
+    "title": "Blacksmith Of The Banished",
+    "overview": "The unexciting life of a boy will be permanently altered as a strange woman enters his life.",
+    "release_date": "1979-01-18",
+    "total_inventory": 10,
+    "available_inventory": 9
+}
+```
+
+##### Errors & Edge Cases to Check
+
+- The API should return back detailed errors and a status `404` if this video does not exist.
+
+#### `POST /videos`
+Create a new video in the video store inventory.
 
 Upon success, this request should return the `id` of the movie created.
+<!-- When is this not valid -->
 
 Request body:
 
