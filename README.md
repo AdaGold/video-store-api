@@ -204,7 +204,10 @@ For this project, the list of errors should be formatted like this:
 ```json
 {
   "errors": {
-    "title": ["Video 'Revenge of the Gnomes' not found"]
+    "available_inventory": [
+      "can't be blank",
+      "is not a number"
+    ]
   }
 }
 ```
@@ -270,12 +273,14 @@ Status: `200`
   {
     "id": 1,
     "title": "Blacksmith Of The Banished",
-    "release_date": "1979-01-18"
+    "release_date": "1979-01-18",
+    "available_inventory": 9
   },
   {
     "id": 2,
     "title": "Savior Of The Curse",
-    "release_date": "2010-11-05"
+    "release_date": "2010-11-05",
+    "available_inventory": 1
   }
 ]
 ```
@@ -311,7 +316,7 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `404` if this video does not exist.
+- The API should return back detailed errors and a status `404: Not Found` if this video does not exist.
 
 #### `POST /videos`
 Creates a new video with the given params.
@@ -378,8 +383,8 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
-- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the customer does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the video does not exist
 - The API should return back detailed errors and a status `400: Bad Request` if the video does not have any available inventory before check out
 
 ##### Hint: Params Not Nested
@@ -417,8 +422,8 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
-- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the customer does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the video does not exist
 
 ## Optional Enhancements
 These really are **optional** - if you've gotten here and you have time left, that means you're moving speedy fast!
