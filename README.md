@@ -347,6 +347,10 @@ Status: `201: Created`
 
 - The API should return back detailed errors and a status `400: Bad Request` if the video does not have any of the required fields to be valid.
 
+##### Hint: Params Not Nested
+
+Are you having trouble creating a new video? Look at the structure of the request body for the request. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
+
 ### Wave 2: Making Rentals with Checking In and Checking Out
 
 #### `POST /rentals/check-out`
@@ -386,10 +390,6 @@ Status: `200`
 - The API should return back detailed errors and a status `404: Not Found` if the customer does not exist
 - The API should return back detailed errors and a status `404: Not Found` if the video does not exist
 - The API should return back detailed errors and a status `400: Bad Request` if the video does not have any available inventory before check out
-
-##### Hint: Params Not Nested
-
-Look at the structure of the request body. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
 
 #### `POST /rentals/check-in`
 [Checks in](https://www.merriam-webster.com/dictionary/check-in) a video to a customer, and updates the data in the database as such.
