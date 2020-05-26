@@ -171,19 +171,31 @@ We have also included [this video](https://adaacademy.hosted.panopto.com/Panopto
 
 The smoke tests live in the [test folder](test). To run them:
 
+#### Import the Smoke Tests
+
 1. Open Postman
 1. Click `Import` in the top left
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
-1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/videos`.  `{{url}}` is a key which you can give a value on your computer.
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detailed view of every test.
+
+#### Setup the Environment
 1.  To do so go to the Gearbox in the top-right and select `Manage Environments`
 ![Manage Environments](images/manage-environment.png)
 1.  Then Select `Add`
 ![add button](images/add-btn.png)
-1.  Lastly add a key `url` and value `http://localhost:3000`
+1.  Lastly add a key `base_url` and value `http://localhost:3000`
 ![Key & Value](images/key-value.png)
-1. Click the blue `Run` button. This will launch the collection runner.
-1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
+
+##### Alternatively, Import the Environment File
+1. In the "Manage Environments" window, you can import an environment. We've included the environment file in `test/Video Store API development.postman_environment.json`
+
+#### Run the Smoke Tests
+1. Run your server. You'll need a running server open before Postman can reach any of your endpoints.
+1. Explore! There are ways to run the whole collection of tests and ways to run each individual test.
+1. To run a collection of tests:
+    1. Click the blue `Run` button. This will launch the collection runner.
+    1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
 
 Ideally, by the time of project submission, all smoke tests will pass.
 
@@ -204,7 +216,10 @@ For this project, the list of errors should be formatted like this:
 ```json
 {
   "errors": {
-    "title": ["Video 'Revenge of the Gnomes' not found"]
+    "available_inventory": [
+      "can't be blank",
+      "is not a number"
+    ]
   }
 }
 ```
@@ -270,12 +285,14 @@ Status: `200`
   {
     "id": 1,
     "title": "Blacksmith Of The Banished",
-    "release_date": "1979-01-18"
+    "release_date": "1979-01-18",
+    "available_inventory": 9
   },
   {
     "id": 2,
     "title": "Savior Of The Curse",
-    "release_date": "2010-11-05"
+    "release_date": "2010-11-05",
+    "available_inventory": 1
   }
 ]
 ```
@@ -311,7 +328,7 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `404` if this video does not exist.
+- The API should return back detailed errors and a status `404: Not Found` if this video does not exist.
 
 #### `POST /videos`
 Creates a new video with the given params.
@@ -341,6 +358,10 @@ Status: `201: Created`
 ##### Errors & Edge Cases to Check
 
 - The API should return back detailed errors and a status `400: Bad Request` if the video does not have any of the required fields to be valid.
+
+##### Hint: Params Not Nested
+
+Are you having trouble creating a new video? Look at the structure of the request body for the request. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
 
 ### Wave 2: Making Rentals with Checking In and Checking Out
 
@@ -378,13 +399,9 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
-- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the customer does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the video does not exist
 - The API should return back detailed errors and a status `400: Bad Request` if the video does not have any available inventory before check out
-
-##### Hint: Params Not Nested
-
-Look at the structure of the request body. In Rails, the Rails convention for passing in params often relied on a specific nested structure. For example, when we created a book in Ada Books, our book params data from our new book form came in nested, like `{book: {title: 'Alice in Wonderland'}}`. How are the API expectations different?
 
 #### `POST /rentals/check-in`
 [Checks in](https://www.merriam-webster.com/dictionary/check-in) a video to a customer, and updates the data in the database as such.
@@ -417,8 +434,8 @@ Status: `200`
 
 ##### Errors & Edge Cases to Check
 
-- The API should return back detailed errors and a status `400: Bad Request` if the customer does not exist
-- The API should return back detailed errors and a status `400: Bad Request` if the video does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the customer does not exist
+- The API should return back detailed errors and a status `404: Not Found` if the video does not exist
 
 ## Optional Enhancements
 These really are **optional** - if you've gotten here and you have time left, that means you're moving speedy fast!
