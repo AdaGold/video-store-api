@@ -82,21 +82,22 @@ Once you and your team have settled on an initial ERD, create your Rails app:
 ### Seed Data
 
 We are providing:
-  - `db/seeds/movies.json`, a file that contains information about videos that are in the inventory of our video store.
+  - `db/seeds/videos.json`, a file that contains information about videos that are in the inventory of our video store.
   - `db/seeds/customer.json`, a file that contains information about customers of our video store.
   - `db/seeds.rb`, a seeds script that will read these two JSON files.
 
 <details>
-  <summary>Click here for more details about <code>movie.json</code> and <code>customer.json</code></summary>
+  <summary>Click here for more details about <code>videos.json</code> and <code>customer.json</code></summary>
 
-  `movies.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
+  `videos.json` contains information about the videos available to rent at the store. The data is presented as an array of objects, with each object having the following key-value pairs:
 
   | Field          | Datatype | Description
   |----------------|----------|------------
-  | `title`        | string   | The title of the film
+  | `title`        | string   | The title of the video
   | `overview`     | string   | A short plot synopsis
-  | `release_date` | date   | `YYYY-MM-DD`, Day the film was originally released
-  | `inventory`    | integer  | How many copies of the film the video store owns
+  | `release_date` | date   | `YYYY-MM-DD`, Day the video was originally released
+  | `total_inventory`    | integer  | The total number of copies of this video that the video store owns
+  | `available_inventory` | integer | The current number of copies of this video available for check out/rental
 
   `customers.json` contains information about the customers that have rented with the store in the past. The data is presented as, you guessed it, an array of objects, with each object have the following key-value pairs:
 
@@ -120,7 +121,7 @@ Because APIs are often open to the public, thorough testing is essential. For a 
 
 For each API endpoint defined in the controllers, you should have _at least_:
 - A basic test with no parameters, if applicable
-- Positive and negative tests for any URI parameters (user ID, movie title)
+- Positive and negative tests for any URI parameters
 - Testing around any data in the request body
 
 For this project, we will only require tests for the models around validations.
@@ -174,7 +175,7 @@ The smoke tests live in the [test folder](test). To run them:
 1. Click `Import` in the top left
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
-1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/movies`.  `{{url}}` is a key which you can give a value on your computer.
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/videos`.  `{{url}}` is a key which you can give a value on your computer.
 1.  To do so go to the Gearbox in the top-right and select `Manage Environments`
 ![Manage Environments](images/manage-environment.png)
 1.  Then Select `Add`
@@ -203,14 +204,14 @@ For this project, the list of errors should be formatted like this:
 ```json
 {
   "errors": {
-    "title": ["Movie 'Revenge of the Gnomes' not found"]
+    "title": ["Video 'Revenge of the Gnomes' not found"]
   }
 }
 ```
 
 All errors your API can return should be covered by at least one controller test case.
 
-### Wave 1: Customers and Movies
+### Wave 1: Customers and Videos
 
 #### `GET` `/customers`
 
@@ -443,7 +444,7 @@ Things to note:
 - Sorting by ID is the rails default
 - Possible sort fields:
   - Customers can be sorted by `name`, `registered_at` and `postal_code`
-  - Movies can be sorted by `title` and `release_date`
+  - Videos can be sorted by `title` and `release_date`
   - Overdue rentals can be sorted by `title`, `name`, `checkout_date` and `due_date`
 - If the client requests both sorting and pagination, pagination should be relative to the sorted order
 - Check out the [will_paginate gem](https://github.com/mislav/will_paginate)
@@ -452,10 +453,10 @@ Things to note:
 All these endpoints should support all 3 query parameters. All fields are sortable.
 
 #### `GET /rentals/overdue`
-List all customers with overdue movies
+List all customers with overdue videos
 
 Fields to return:
-- `movie_id`
+- `video_id`
 - `title`
 - `customer_id`
 - `name`
@@ -463,11 +464,11 @@ Fields to return:
 - `checkout_date`
 - `due_date`
 
-#### `GET /movies/:id/current`
-List customers that have _currently_ checked out a copy of the film
+#### `GET /videos/:id/current`
+List customers that have _currently_ checked out a copy of the video
 
 URI parameters:
-- `id`: Movie identifier
+- `id`: Video identifier
 
 Fields to return:
 - `customer_id`
@@ -476,11 +477,11 @@ Fields to return:
 - `checkout_date`
 - `due_date`
 
-#### `GET /movies/:id/history`
-List customers that have checked out a copy of the film _in the past_
+#### `GET /videos/:id/history`
+List customers that have checked out a copy of the video _in the past_
 
 URI parameters:
-- `id`: Movie identifier
+- `id`: Video identifier
 
 Fields to return:
 - `customer_id`
@@ -490,7 +491,7 @@ Fields to return:
 - `due_date`
 
 #### `GET /customers/:id/current`
-List the movies a customer _currently_ has checked out
+List the videos a customer _currently_ has checked out
 
 URI parameters:
 - `id`: Customer ID
@@ -501,7 +502,7 @@ Fields to return:
 - `due_date`
 
 #### `GET /customers/:id/history`
-List the movies a customer has checked out _in the past_
+List the videos a customer has checked out _in the past_
 
 URI parameters:
 - `id`: Customer ID
