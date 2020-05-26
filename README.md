@@ -201,7 +201,7 @@ Ideally, by the time of project submission, all smoke tests will pass.
 
 ## Functional Requirements
 
-All of the API requirements for this project are located in the project repo's wiki page.
+All of the API requirements for this project are located in the project repo's [wiki page](https://github.com/AdaGold/video-store-api/wiki).
 
 Head to the project repo on GitHub, and look for the "wiki" tab!
 
