@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "690f79cf-484a-4266-8d84-b668aed0c2f4",
+		"name": "Video Store API Wave 2: Making Rentals with Checking In and Checking Out",
+		"description": "Checks the following endpoints:\n\n- POST /rentals/check-out\n- POST /rentals/check-in",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Checks out valid video and customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "8b2b72e6-70c5-4ce1-afae-0e0bcb21f23f",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and test a video that has positive available_inventory value",
+							"//      2. Find and set valid existing customer ID",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/customers`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one customer",
+							"        customers = res.json()",
+							"        pm.expect(customers).to.not.have.lengthOf(0);",
+							"",
+							"        customer = customers[0];",
+							"        console.log(customer);",
+							"        pm.variables.set(\"valid_customer_id\", customer.id);",
+							"",
+							"        // Get initial values of videos_checked_out_count",
+							"        pm.variables.set(\"original_videos_checked_out\", customer['videos_checked_out_count']);",
+							"        console.log('An existing customer was found with the id', pm.variables.get('valid_customer_id'));",
+							"        console.log('and the original_videos_checked_out', pm.variables.get('original_videos_checked_out'));",
+							"    }",
+							"});",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/videos`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one video",
+							"        videos = res.json();",
+							"        pm.expect(videos).to.not.have.lengthOf(0);",
+							"",
+							"        video = videos[videos.length - 1];",
+							"        console.log(video);",
+							"",
+							"        // Test that this video needed for the test has a positive available_inventory.",
+							"        // If this fails, re-run this test after creating a new video with ample available inventory",
+							"",
+							"        pm.variables.set(\"valid_video_id\", video.id);",
+							"",
+							"        // Get initial values of available_inventory",
+							"        pm.variables.set(\"original_available_inventory\", video['available_inventory']);",
+							"",
+							"        console.log('An existing video was found with the id', pm.variables.get('valid_video_id'));",
+							"        console.log('and an original_available_inventory', pm.variables.get('original_available_inventory'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ca8ec82-7aec-4437-a668-78b477dccc4a",
+						"exec": [
+							"pm.test(\"response should be 200 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should give back the details of check-out: customer_id, video_id, due_date, videos_checked_out_count, available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['customer_id', 'video_id', 'due_date', 'videos_checked_out_count', 'available_inventory']);",
+							"});",
+							"",
+							"pm.test(\"request should have incremented videos_checked_out_count, decremented available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"",
+							"    pm.expect(res.videos_checked_out_count).to.equal( pm.variables.get('original_videos_checked_out') + 1 );",
+							"    pm.expect(res.available_inventory).to.equal(pm.variables.get('original_available_inventory') - 1);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "{{valid_customer_id}}",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "{{valid_video_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-out",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get errors when checking out and invalid customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "34a1b6f6-3b91-448a-b396-e612025a2ee8",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and test a video that has positive available_inventory value",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/videos`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one video",
+							"        videos = res.json();",
+							"        pm.expect(videos).to.not.have.lengthOf(0);",
+							"",
+							"        video = videos[videos.length - 1];",
+							"        pm.variables.set(\"valid_video_id\", video.id);",
+							"        console.log('An existing video was found with the id', pm.variables.get('valid_video_id'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bf8d5d2b-8e00-42cf-9bfc-5b4b25454525",
+						"exec": [
+							"pm.test(\"response should be 404 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(404);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors': ['Not Found']\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(res['errors']).to.have.members(['Not Found']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "-1",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "{{valid_video_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-out",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get errors when checking out and invalid video",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "87b2c3ba-669a-41dd-8705-336afba0656a",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and set valid existing customer ID",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/customers`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one customer",
+							"        customers = res.json()",
+							"        pm.expect(customers).to.not.have.lengthOf(0);",
+							"",
+							"        customer = customers[0];",
+							"        pm.variables.set(\"valid_customer_id\", customer.id);",
+							"",
+							"        // Get initial values of videos_checked_out_count",
+							"        pm.variables.set(\"original_videos_checked_out\", customer['videos_checked_out_count']);",
+							"        console.log('An existing customer was found with the id', pm.variables.get('valid_customer_id'));",
+							"        console.log('and the original_videos_checked_out', pm.variables.get('original_videos_checked_out'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3ddbeb31-c014-46e7-a0cd-86d1b575b8b1",
+						"exec": [
+							"pm.test(\"response should be 404 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(404);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors': ['Not Found']\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(res['errors']).to.have.members(['Not Found']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "{{valid_customer_id}}",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "-1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-out",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-out"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checks in valid video and customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a810fea-4a54-408c-b7f7-2a68b29a6f30",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and test a video that has positive available_inventory value",
+							"//      2. Find and set valid existing customer ID",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/customers`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one customer",
+							"        customers = res.json()",
+							"        pm.expect(customers).to.not.have.lengthOf(0);",
+							"",
+							"        customer = customers[0];",
+							"        console.log(customer);",
+							"        pm.variables.set(\"valid_customer_id\", customer.id);",
+							"",
+							"        // Get initial values of videos_checked_out_count",
+							"        pm.variables.set(\"original_videos_checked_out\", customer['videos_checked_out_count']);",
+							"        console.log('An existing customer was found with the id', pm.variables.get('valid_customer_id'));",
+							"        console.log('and the original_videos_checked_out', pm.variables.get('original_videos_checked_out'));",
+							"    }",
+							"});",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/videos`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one video",
+							"        videos = res.json();",
+							"        pm.expect(videos).to.not.have.lengthOf(0);",
+							"",
+							"        video = videos[videos.length - 1];",
+							"        console.log(video);",
+							"",
+							"        // Test that this video needed for the test has a positive available_inventory.",
+							"        // If this fails, re-run this test after creating a new video with ample available inventory",
+							"",
+							"        pm.variables.set(\"valid_video_id\", video.id);",
+							"",
+							"        // Get initial values of available_inventory",
+							"        pm.variables.set(\"original_available_inventory\", video['available_inventory']);",
+							"",
+							"        console.log('An existing video was found with the id', pm.variables.get('valid_video_id'));",
+							"        console.log('and an original_available_inventory', pm.variables.get('original_available_inventory'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e14e416-60b1-4d36-8cde-5c76d2169c8f",
+						"exec": [
+							"pm.test(\"response should be 200 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should give back details of the check-in: customer_id, video_id, videos_checked_out_count, available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['customer_id', 'video_id', 'videos_checked_out_count', 'available_inventory']);",
+							"});",
+							"",
+							"pm.test(\"request should have incremented videos_checked_out_count, decremented available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"",
+							"    pm.expect(res.videos_checked_out_count).to.equal( pm.variables.get('original_videos_checked_out') - 1 );",
+							"    pm.expect(res.available_inventory).to.equal(pm.variables.get('original_available_inventory') + 1);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "{{valid_customer_id}}",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "{{valid_video_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-in",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get errors when checking in and invalid customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "26deee94-b703-4ef0-8d16-143b6f8b0a78",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and test a video that has positive available_inventory value",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/videos`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one video",
+							"        videos = res.json();",
+							"        pm.expect(videos).to.not.have.lengthOf(0);",
+							"",
+							"        video = videos[videos.length - 1];",
+							"        pm.variables.set(\"valid_video_id\", video.id);",
+							"        console.log('An existing video was found with the id', pm.variables.get('valid_video_id'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "611878f7-a663-47a7-afcc-04c93633f7ea",
+						"exec": [
+							"pm.test(\"response should be 404 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(404);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors': ['Not Found']\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(res['errors']).to.have.members(['Not Found']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "-1",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "{{valid_video_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-in",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get errors when checking out and invalid video Copy",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "54552b89-1abc-407f-9185-095558a230a1",
+						"exec": [
+							"// Pre-request script:",
+							"//      1. Find and set valid existing customer ID",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/customers`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this test, there should be at least one customer",
+							"        customers = res.json()",
+							"        pm.expect(customers).to.not.have.lengthOf(0);",
+							"",
+							"        customer = customers[0];",
+							"        pm.variables.set(\"valid_customer_id\", customer.id);",
+							"",
+							"        // Get initial values of videos_checked_out_count",
+							"        pm.variables.set(\"original_videos_checked_out\", customer['videos_checked_out_count']);",
+							"        console.log('An existing customer was found with the id', pm.variables.get('valid_customer_id'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fe0f2905-b489-4c12-a3e5-3be76a6fca11",
+						"exec": [
+							"pm.test(\"response should be 404 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(404);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors': ['Not Found']\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(res['errors']).to.have.members(['Not Found']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "customer_id",
+							"value": "{{valid_customer_id}}",
+							"type": "text"
+						},
+						{
+							"key": "video_id",
+							"value": "-1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/rentals/check-in",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"rentals",
+						"check-in"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,367 @@
+{
+	"info": {
+		"_postman_id": "8dfaadad-d0be-4331-8b10-4aa732fbfbac",
+		"name": "Video Store API Wave 1: Customers and Videos",
+		"description": "Checks the following endpoints:\n\n- GET /customers\n- GET /videos\n- GET /videos/{id}\n- POST /videos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get list of all customers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fbc48b66-e17a-40f9-97eb-f861dbab68e5",
+						"exec": [
+							"pm.test(\"response should be OK and come back as an array\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});",
+							"",
+							"pm.test(\"customer objects in response should have id, name, registered_at, postal_code, phone, videos_checked_out_count\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res[0])).to.have.members(['id', 'name', 'registered_at', 'postal_code', 'phone', 'videos_checked_out_count']);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/customers",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get list of all videos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "836d93d8-35c0-402e-8e01-f60c2f733324",
+						"exec": [
+							"pm.test(\"response should be OK and come back as an array\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json()).to.be.an('array');",
+							"});",
+							"",
+							"pm.test(\"video objects in response should have id, title, release_date, available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res[0])).to.have.members(['id', 'title', 'release_date', 'available_inventory']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/videos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"videos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get details on a specific valid video",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ff6f203-b3ca-47bd-b4fa-a656e31efb91",
+						"exec": [
+							"pm.test(\"response should be OK and come back as a json object\", () => {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"video objects in response should have title, overview, release_date, total_inventory, available_inventory\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['title', 'overview', 'release_date', 'total_inventory', 'available_inventory']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1b6a43ec-14f4-4bd4-81c9-b907f3297a2e",
+						"exec": [
+							"// Pre-request script: Find and set a valid existing video ID",
+							"",
+							"pm.sendRequest({",
+							"    url: `${ pm.environment.get(\"base_url\") }/videos`,",
+							"    method: 'GET'}, function (err, res) {",
+							"    if (err) {",
+							"        console.log(err);",
+							"    } else {",
+							"        // Setup assertion: for the sake of this tests, there should be at least one video",
+							"        pm.expect(res.json()).to.not.have.lengthOf(0);",
+							"",
+							"        pm.variables.set(\"valid_video_id\", res.json()[0].id);",
+							"        console.log('An existing video was found with the id', pm.variables.get('valid_video_id'));",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/videos/{{valid_video_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"videos",
+						"{{valid_video_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get error on a specific invalid video",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6b3f657-ad5b-4750-82a9-b3c579e69c5e",
+						"exec": [
+							"pm.test(\"response should be 404 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(404);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors': ['Not Found']\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(res['errors']).to.have.members(['Not Found']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f6807ec9-3341-433e-b17d-353393d4a614",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/videos/-1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"videos",
+						"-1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creates a video with valid data",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4a1f2264-8a8d-4309-938b-60d68f58e313",
+						"exec": [
+							"// Generate a unique title for this movie, so that multiple runs don't conflict",
+							"const uniqueId = Math.random().toString(36).substring(2)",
+							"    + (new Date()).getTime().toString(36);",
+							"",
+							"pm.variables.set(\"video_title\", `test_movie_${uniqueId}`);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8a1927e6-46be-44a3-b127-17d47743c398",
+						"exec": [
+							"pm.test(\"response should be 201 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(201);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should give back the id of the newly created video\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['id']);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "{{video_title}}",
+							"type": "text"
+						},
+						{
+							"key": "overview",
+							"value": "This movie was created by the Postman smoke tests.",
+							"type": "text"
+						},
+						{
+							"key": "release_date",
+							"value": "1990-01-01",
+							"type": "text"
+						},
+						{
+							"key": "total_inventory",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "available_inventory",
+							"value": "500",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/videos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"videos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get errors when creating a video with invalid data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cb170430-5945-4d71-8fdc-629721f88d97",
+						"exec": [
+							"pm.test(\"response should be 400 and come back as a json object\", () => {",
+							"    pm.response.to.have.status(400);",
+							"    pm.expect(pm.response.json()).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"response should have 'errors' with details on title, overview, release_date, total_inventory, available_inventory required\", () => {",
+							"    const res = pm.response.json();",
+							"    pm.expect(Object.keys(res)).to.have.members(['errors']);",
+							"    pm.expect(Object.keys(res['errors'])).to.have.members(['title', 'overview', 'release_date', 'total_inventory', 'available_inventory']);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d13c9c80-fb76-4363-be42-bf60186f1a24",
+						"exec": [
+							"// Generate a unique title for this movie, so that multiple runs don't conflict",
+							"const uniqueId = Math.random().toString(36).substring(2)",
+							"    + (new Date()).getTime().toString(36);",
+							"",
+							"pm.environment.set(\"unique_movie_title\", `test_movie_${uniqueId}`);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}/videos",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"videos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"id": "701d7195-0f4b-4fe5-add1-b8f6eba63b53",
+			"key": "valid_video_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
