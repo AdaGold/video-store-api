@@ -171,19 +171,31 @@ We have also included [this video](https://adaacademy.hosted.panopto.com/Panopto
 
 The smoke tests live in the [test folder](test). To run them:
 
+#### Import the Smoke Tests
+
 1. Open Postman
 1. Click `Import` in the top left
 1. Drag-and-drop the file into the box
 1. In the left sidebar, click on the `Collections` tab
-1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detail view.  You will notice they are in the format `{{url}}/videos`.  `{{url}}` is a key which you can give a value on your computer.
+1. There should now be an entry for the smoke tests. Hover over it and click the `>` icon for a detailed view of every test.
+
+#### Setup the Environment
 1.  To do so go to the Gearbox in the top-right and select `Manage Environments`
 ![Manage Environments](images/manage-environment.png)
 1.  Then Select `Add`
 ![add button](images/add-btn.png)
-1.  Lastly add a key `url` and value `http://localhost:3000`
+1.  Lastly add a key `base_url` and value `http://localhost:3000`
 ![Key & Value](images/key-value.png)
-1. Click the blue `Run` button. This will launch the collection runner.
-1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
+
+##### Alternatively, Import the Environment File
+1. In the "Manage Environments" window, you can import an environment. We've included the environment file in `test/Video Store API development.postman_environment.json`
+
+#### Run the Smoke Tests
+1. Run your server. You'll need a running server open before Postman can reach any of your endpoints.
+1. Explore! There are ways to run the whole collection of tests and ways to run each individual test.
+1. To run a collection of tests:
+    1. Click the blue `Run` button. This will launch the collection runner.
+    1. In the collection runner, scroll down in the center pane and click the blue `Start Test` button
 
 Ideally, by the time of project submission, all smoke tests will pass.
 
