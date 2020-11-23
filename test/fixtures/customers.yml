@@ -1,0 +1,18 @@
+customer_one:
+  name: Simon Del Rosario
+  registered_at: "Wed, 29 Apr 2015 07:54:14 -0700"
+  postal_code: 75007
+  phone: (469) 734-9111
+  videos_checked_out_count: 3
+  address: 1314 Elm Street
+  city: Seattle
+  state: WA
+customer_two:
+  name: Becca
+  registered_at: "Wed, 13 Mar 2020 07:54:14 -0700"
+  postal_code: 98177
+  phone: (469) 734-9222
+  videos_checked_out_count: 1
+  address: 1414 Seasame Street
+  city: Seattle
+  state: WA
